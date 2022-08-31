@@ -1,0 +1,224 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form class="form form-horizontal" [formGroup]="addFeeForm" #fee="ngForm" (ngSubmit)="add()">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.TITLE' | translate }} </label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                id="first-name-vertical"
+                class="form-control w-60"
+                formControlName="title"
+                placeholder="Title"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+            </div>
+            <div class="col-sm-9">
+              <div
+              *ngIf="
+              addFeeForm.get('title')!.invalid &&
+                (addFeeForm.get('title')!.dirty ||
+                addFeeForm.get('title')!.touched)
+              "
+            >
+              <small
+                *ngIf="addFeeForm.get('title')?.errors?.required"
+                class="form-text text-danger"
+              >
+                This Field is required !!
+              </small>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.SYMBOL' | translate }} </label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                id="first-name-vertical"
+                class="form-control w-60"
+                formControlName="symbol"
+                placeholder="Symbol"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+            </div>
+            <div class="col-sm-9">
+              <div
+              *ngIf="
+              addFeeForm.get('symbol')!.invalid &&
+                (addFeeForm.get('symbol')!.dirty ||
+                addFeeForm.get('symbol')!.touched)
+              "
+            >
+              <small
+                *ngIf="addFeeForm.get('symbol')?.errors?.required"
+                class="form-text text-danger"
+              >
+                This Field is required !!
+              </small>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.DESCRIPTION' | translate }} </label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                id="first-name-vertical"
+                class="form-control w-60"
+                formControlName="description"
+                placeholder="Description"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+            </div>
+            <div class="col-sm-9">
+              <div
+              *ngIf="
+              addFeeForm.get('description')!.invalid &&
+                (addFeeForm.get('description')!.dirty ||
+                addFeeForm.get('description')!.touched)
+              "
+            >
+              <small
+                *ngIf="addFeeForm.get('description')?.errors?.required"
+                class="form-text text-danger"
+              >
+                This Field is required !!
+              </small>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.EQUATION' | translate }} </label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                id="first-name-vertical"
+                class="form-control w-60"
+                formControlName="equation"
+                placeholder="Equation"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+            </div>
+            <div class="col-sm-9">
+              <div
+              *ngIf="
+              addFeeForm.get('equation')!.invalid &&
+                (addFeeForm.get('equation')!.dirty ||
+                addFeeForm.get('equation')!.touched)
+              "
+            >
+              <small
+                *ngIf="addFeeForm.get('equation')?.errors?.required"
+                class="form-text text-danger"
+              >
+                This Field is required !!
+              </small>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.TYPE' | translate }} </label>
+            </div>
+            <div class="col-sm-9">
+              <select
+                class="custom-select form-control w-60"
+                formControlName="type"
+                required
+              >
+                <option selected>-Select-</option>
+                <option [value]="el.title" *ngFor="let el of typesList">
+                  {{ el.title }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+            </div>
+            <div class="col-sm-9">
+              <div
+              *ngIf="
+              addFeeForm.get('type')!.invalid &&
+                (addFeeForm.get('type')!.dirty ||
+                addFeeForm.get('type')!.touched)
+              "
+            >
+              <small
+                *ngIf="addFeeForm.get('type')?.errors?.required"
+                class="form-text text-danger"
+              >
+                This Field is required !!
+              </small>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-9 offset-sm-3">
+          <button
+            type="submit"
+            rippleEffect
+            class="btn btn-primary mr-1"
+            [disabled]="!fee.valid"
+          >
+          {{ 'BUTTONS.SUBMIT' | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+          {{ 'BUTTONS.RESET' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

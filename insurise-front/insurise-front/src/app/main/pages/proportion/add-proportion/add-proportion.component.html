@@ -1,0 +1,89 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+      <!-- content-header component -->
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+<form class="form form-vertical"
+[formGroup]="addProportionForm"  (ngSubmit)="onSubmit()"
+>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="first-name-vertical">{{ 'ADD.TITLE' | translate }}</label>
+        <input
+          type="text"
+          id="first-name-vertical"
+          class="form-control"
+          name="form-label"
+          placeholder="{{ 'ADD.TITLE' | translate }}" 
+          
+          formControlName="title"
+        />
+        <div *ngIf="
+        addProportionForm.get('title')!.invalid &&
+                  (addProportionForm.get('title')!.dirty || addProportionForm.get('title')!.touched)">
+
+            <small *ngIf="addProportionForm.get('title')?.errors?.required"
+                   class="form-text text-danger">
+               {{'BUTTON.REQUIRED'|translate}}
+            </small>
+        </div>
+      </div>
+    </div>
+   
+        <div class="col-12">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.OCCURENCE' | translate }}</label>
+            <input
+              type="number"
+              numberMinLimit="0"
+              id="first-name-vertical"
+              class="form-control"
+              name="form-label"
+              placeholder="{{ 'ADD.OCCURENCE' | translate }}" 
+             
+              formControlName="occurence"
+            />
+            <div *ngIf="
+            addProportionForm.get('occurence')!.invalid &&
+                      (addProportionForm.get('occurence')!.dirty || addProportionForm.get('occurence')!.touched)">
+
+                <small *ngIf="addProportionForm.get('occurence')?.errors?.required"
+                       class="form-text text-danger">
+                   {{'BUTTON.REQUIRED'|translate}}
+                </small>
+            </div>
+          </div>
+        </div>
+       
+            <div class="col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{ 'ADD.ADDITIONALCOSTS' | translate }}</label>
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control"
+                  name="form-label"
+                  placeholder="{{ 'ADD.ADDITIONALCOSTS' | translate }}" 
+                  
+                  formControlName="additionalCosts"
+                />
+               
+              </div>
+            </div>
+
+    <div class="col-12">
+      <button 
+        id="addProportion"
+        type="submit"
+        rippleEffect
+        class="btn btn-primary mr-1"
+        
+      >
+      {{'ADD.BTNSUBMIT' | translate}}
+      </button>
+    </div>
+  </div>
+</form>
+
+ 

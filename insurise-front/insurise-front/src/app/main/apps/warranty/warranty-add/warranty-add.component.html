@@ -1,0 +1,210 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <form  class="form form-vertical"
+        ng-controller="CheckBoxController"
+        [formGroup]="addWarrantyForm" 
+        (ngSubmit)="onSubmit()"
+        >
+
+                           
+                                <div class="row">
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="field_name">{{ 'ADD.TITLE' | translate }} </label>
+
+                                            <input class="form-control"
+                                                   data-cy="title"
+                                                   formControlName="title"
+                                                   id="field_name"
+                                                   name="title"
+                                                   required
+                                                   type="text"/>
+                                            <div *ngIf="
+                                            addWarrantyForm.get('title')!.invalid &&
+                                                      (addWarrantyForm.get('title')!.dirty || addWarrantyForm.get('title')!.touched)">
+
+                                                <small *ngIf="addWarrantyForm.get('title')?.errors?.required"
+                                                       class="form-text text-danger">
+                                                   {{'BUTTON.REQUIRED'|translate}}
+                                                </small>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="productDesc">{{ 'ADD.SYMBOL' | translate }}</label>
+                                            <input class="form-control"
+                                                   data-cy="symbol"
+                                                   formControlName="symbol"
+                                                   id="productDesc"
+                                                   name="symbol"
+                                                   type="text"
+                                            />
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="productDesc">{{ 'ADD.DESCRIPTION' | translate }}</label>
+                                            <input class="form-control"
+                                                   data-cy="description"
+                                                   formControlName="description"
+                                                   id="productDesc"
+                                                   name="description"
+                                                   type="text"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="startDate">{{ 'ADD.STARTDATE' | translate }}</label>
+
+                                            <input
+                                            class="form-control"
+                                            data-cy="startDate"
+                                            
+                                            formControlName="startDate"
+                                            id="dateStart"
+                                            name="startDate"
+                                            type="date"
+                                    />
+                                    <div *ngIf="
+                                            addWarrantyForm.get('startDate')!.invalid &&
+                                                      (addWarrantyForm.get('startDate')!.dirty || addWarrantyForm.get('startDate')!.touched)">
+
+                                                <small *ngIf="addWarrantyForm.get('startDate')?.errors?.required"
+                                                       class="form-text text-danger">
+                                                   {{'BUTTON.REQUIRED'|translate}}
+                                                </small>
+                                            </div>
+                                            <!-- <input [flatpickr]="basicDateOptions"
+                                                   class="form-control"
+                                                   data-cy="startDate"
+                                                   formControlName="startDate"
+                                                   name="basicDate"
+                                                   id="startDate"/> -->
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="endDate">{{ 'ADD.FINISHDATE' | translate }}</label>
+
+
+                                            <input
+                                            class="form-control"
+                                            data-cy="endDate"
+                                            formControlName="endDate"
+                                            id="dateEnd"
+                                            name="endDate"
+                                            type="date"
+                                    />
+                                    <div *ngIf="
+                                    addWarrantyForm.get('endDate')!.invalid &&
+                                              (addWarrantyForm.get('endDate')!.dirty || addWarrantyForm.get('endDate')!.touched)">
+
+                                        <small *ngIf="addWarrantyForm.get('endDate')?.errors?.required"
+                                               class="form-text text-danger">
+                                           {{'BUTTON.REQUIRED'|translate}}
+                                        </small>
+                                    </div>
+                                        </div>
+                                        <div *ngIf="error.isError" class="form-text text-danger">
+                                          <small>
+                                          {{ 'BUTTON.DATECONDITION'|translate}}
+                                        </small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group mb-2">
+                                            <label for="field_defaultDiscount">{{ 'ADD.DEFAULTPERIOD' | translate }}</label>
+                                            <input
+                                                    class="form-control"
+                                                    data-cy="defaultPeriod"
+                                                    formControlName="defaultPeriod"
+                                                    id="field_defaultDiscount"
+                                                    name="defaultPeriod"
+                                                    type="number"
+                                            />
+                                            <div *ngIf="
+                                            addWarrantyForm.get('defaultPeriod')!.invalid &&
+                                            (addWarrantyForm.get('defaultPeriod')!.dirty || addWarrantyForm.get('defaultPeriod')!.touched)">
+
+                                                <small *ngIf="addWarrantyForm.get('defaultPeriod')?.errors?.required"
+                                                       class="form-text text-danger">
+                                                       {{'BUTTON.REQUIRED'|translate}}.
+                                                </small>
+
+                                                <small [hidden]="!addWarrantyForm.get('defaultPeriod')?.errors?.number"
+                                                       class="form-text text-danger">
+                                                       {{'BUTTON.REQUIREDNUMBER'|translate}}.
+                                                </small>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 col-6 mb-1">
+                                        <div class="form-group">
+                                          <label for="chain">{{ 'ADD.TYPETARIF' | translate }}</label>
+                                          <select
+                                            class="custom-select"
+                                            name="typeTarif"
+                                            
+                                            ngModel
+                                            formControlName="typeTarif"
+                                          >
+                                          <option [value]=0>
+                                            {{"Prorata"}}
+                                            </option>
+                                            <option [value]=1>
+                                              {{"Totale"}}
+                                              </option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                    <div class="col-6 col-12">
+                                        <div class="custom-control custom-checkbox m-2">
+                                          <input
+                                            type="checkbox"
+                                            class="custom-control-input"
+                                            name="isCommercialRate"
+                                            id="checkbox-1"
+                                           
+                                            formControlName="isCommercialRate"
+                                          />
+                                          <label class="custom-control-label" for="checkbox-1"
+                                            >{{ 'ADD.ISCOMMERCIALRATE' | translate }}</label
+                                          >
+                                        </div>
+                                        <hr />
+                                      </div>
+                                </div>
+                                <div class="col-12">
+                                  <button
+                                    id="addWarranty"
+                                    type="submit"
+                                    rippleEffect
+                                    class="btn btn-primary mr-1"
+                                    [disabled]="!addWarrantyForm.valid"
+                                   
+                                  >
+                                  {{'ADD.BTNSUBMIT' | translate}}
+                                  </button>
+                                </div>
+                            </form>
+                          </div>
+              </div>
+                        
+                            
+                       
+                          
+     

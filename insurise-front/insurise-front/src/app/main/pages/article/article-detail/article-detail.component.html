@@ -1,0 +1,20 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+        <section class="users-list-wrapper"></section>
+        <div class="card">
+            <table class="table table-hover">
+                <tr>
+                    <td>{{ 'ADD.TITLE' | translate }}:</td>
+                    <td>{{item.title}}</td>
+                </tr>
+                <tr>
+                    <td>{{ 'ADD.FEATURE' | translate }}:</td>
+                    <td><div *ngFor="let feature of item.featureItems ">{{feature.feature}}</div></td>
+                  </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

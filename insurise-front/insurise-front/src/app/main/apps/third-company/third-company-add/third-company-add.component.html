@@ -1,0 +1,226 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<div class="card">
+  <div class="card-body">
+    <form
+      class="form form-vertical"
+      [formGroup]="addThirdCompanyForm"
+      (ngSubmit)="add()"
+    >
+      <div class="row">
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.LABEL" | translate }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="label"
+              placeholder="{{ 'ADD.LABEL' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdCompanyForm.get('label')!.invalid &&
+              (addThirdCompanyForm.get('label')!.dirty ||
+                addThirdCompanyForm.get('label')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdCompanyForm.get('label')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{
+              "ADD.TAXREGISTRATIONNUMBER" | translate
+            }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="taxRegistrationNumber"
+              placeholder="{{ 'ADD.TAXREGISTRATIONNUMBER' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdCompanyForm.get('taxRegistrationNumber')!.invalid &&
+              (addThirdCompanyForm.get('taxRegistrationNumber')!.dirty ||
+                addThirdCompanyForm.get('taxRegistrationNumber')!.touched)
+            "
+          >
+            <small
+              *ngIf="
+                addThirdCompanyForm.get('taxRegistrationNumber')?.errors
+                  ?.required
+              "
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{
+              "ADD.DESCRIPTION" | translate
+            }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="description"
+              placeholder="{{ 'ADD.DESCRIPTION' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdCompanyForm.get('description')!.invalid &&
+              (addThirdCompanyForm.get('description')!.dirty ||
+                addThirdCompanyForm.get('description')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdCompanyForm.get('description')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.PHONE" | translate }}</label>
+            <input
+              type="tel"
+              id="phone"
+              class="form-control"
+              formControlName="phone"
+              placeholder="{{ 'ADD.PHONE' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdCompanyForm.get('phone')!.invalid &&
+              (addThirdCompanyForm.get('phone')!.dirty ||
+                addThirdCompanyForm.get('phone')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdCompanyForm.get('phone')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+          <div *ngIf="Error.isError" class="col-9 form-text text-danger">
+            {{ Error.errorMessage }}
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">Fax</label>
+            <input
+              type="tel"
+              id="fax"
+              class="form-control"
+              formControlName="fax"
+              placeholder="Fax"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdCompanyForm.get('fax')!.invalid &&
+              (addThirdCompanyForm.get('fax')!.dirty ||
+                addThirdCompanyForm.get('fax')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdCompanyForm.get('fax')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+          <div *ngIf="TError.isError" class="col-9 form-text text-danger">
+            {{ TError.errorMessage }}
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.EMAIL" | translate }}</label>
+            <input
+              type="email"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="email"
+              placeholder="{{ 'ADD.EMAIL' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdCompanyForm.get('email')!.invalid &&
+              (addThirdCompanyForm.get('email')!.dirty ||
+                addThirdCompanyForm.get('email')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdCompanyForm.get('email')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{
+              "ADD.ADDRESS" | translate
+            }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="address"
+              placeholder="{{ 'ADD.ADDRESS' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdCompanyForm.get('address')!.invalid &&
+              (addThirdCompanyForm.get('address')!.dirty ||
+                addThirdCompanyForm.get('address')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdCompanyForm.get('address')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" rippleEffect class="btn btn-primary mr-1">
+            {{ "BUTTONS.SUBMIT" | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+            {{ "BUTTONS.RESET" | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

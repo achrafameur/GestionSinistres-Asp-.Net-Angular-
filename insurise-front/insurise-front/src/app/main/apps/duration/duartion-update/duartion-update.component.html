@@ -1,0 +1,119 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form class="form" #duration="ngForm" (ngSubmit)="update(duration)">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label for="first-name-column">{{ 'ADD.TITLE' | translate }}</label>
+            <input
+              type="text"
+              id="first-name-vertical"
+              class="form-control"
+              name="title"
+              placeholder="title"
+              [(ngModel)]="Duration.title"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label for="last-name-column">{{ 'ADD.TYPE' | translate }}</label>
+            <select
+              class="custom-select form-control"
+              name="type"
+              [(ngModel)]="Duration.type"
+              required
+            >
+              <option selected>-Select-</option>
+              <option [value]="el.title" *ngFor="let el of typesList">
+                {{ el.title }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-column">{{ 'ADD.VALUE' | translate }}</label>
+            <input
+              type="number"
+              id="first-name-vertical"
+              class="form-control"
+              name="value"
+              placeholder="Value"
+              [(ngModel)]="Duration.value"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label for="city-column">{{ 'ADD.COEFFICIENT' | translate }}</label>
+            <input
+              type="number"
+              id="first-name-vertical"
+              class="form-control"
+              name="coefficient"
+              placeholder="Coefficient"
+              [(ngModel)]="Duration.coefficient"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label for="country-floating">{{ 'ADD.STARTDATE' | translate }}</label>
+            <input
+              type="date"
+              id="startDate"
+              class="form-control"
+              name="startDate"
+              placeholder="Start Date"
+              [(ngModel)]="Duration.startDate"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="form-group">
+            <label for="company-column">{{ 'ADD.ENDDATE' | translate }}</label>
+            <input
+              type="date"
+              id="endDate"
+              class="form-control"
+              name="endDate"
+              placeholder="End Date"
+              [(ngModel)]="Duration.endDate"
+              required
+            />
+            <div *ngIf="error.isError" class="alert alert-danger">
+              {{ error.errorMessage }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <div class="form-group">
+                  <input type="checkbox" id="renCheck" [(ngModel)]="Duration.renewable" name="renewable"/> 
+                  <label>{{ 'ADD.RENEWABLE' | translate }}</label> 
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button
+            type="submit"
+            rippleEffect
+            class="btn btn-primary mr-1"
+            [disabled]="!duration.valid"
+          >
+          {{ 'BUTTONS.SUBMIT' | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+            {{ 'BUTTONS.RESET' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

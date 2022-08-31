@@ -1,0 +1,115 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form
+  class="form form-horizontal"
+  [formGroup]="addBranchForm"
+  (ngSubmit)="add()"
+>
+  <div class="blog-edit-wrapper">
+    <div>
+      <div class="card">
+        <div class="card-body">
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.TITLE" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control w-60"
+                  name="form-label"
+                  placeholder="Title"
+                  formControlName="title"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label"></div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addBranchForm.get('title')!.invalid &&
+                  (addBranchForm.get('title')!.dirty ||
+                    addBranchForm.get('title')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addBranchForm.get('title')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.DESCRIPTION" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  id="email-id-vertical"
+                  class="form-control w-60"
+                  placeholder="Description"
+                  formControlName="description"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group row">
+                <div class="col-sm-3 col-form-label"></div>
+                <div class="col-9"
+                  *ngIf="
+                    addBranchForm.get('description')!.invalid &&
+                    (addBranchForm.get('description')!.dirty ||
+                      addBranchForm.get('description')!.touched)
+                  "
+                >
+                  <small
+                    *ngIf="addBranchForm.get('description')?.errors?.required"
+                    class="form-text text-danger"
+                  >
+                    This Field is required !!
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.PARENTBRANCH" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <select class="custom-select w-60" formControlName="parentId">
+                  <option [value]="0">-Select-</option>
+                  <option
+                    [value]="el.branchId"
+                    *ngFor="let el of parentBranches"
+                  >
+                    {{ el.title }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9 offset-sm-3">
+            <button type="submit" rippleEffect class="btn btn-primary mr-1">
+              {{ "BUTTONS.SUBMIT" | translate }}
+            </button>
+            <button type="reset" rippleEffect class="btn btn-outline-danger">
+              {{ "BUTTONS.RESET" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

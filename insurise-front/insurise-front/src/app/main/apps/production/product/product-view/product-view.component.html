@@ -1,0 +1,726 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-header">
+    <div class="row">
+      <div class="form-check col-md-7">
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+      </div>
+      <div class="col-md-5 text-right">
+        <button  Class="btn btn-primary" rippleEffect
+                type="submit"
+                (click)="allowUpdate()"
+        >
+          {{ titleEditBtn| translate | titlecase }}
+        </button>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="content-body">
+
+    <!-- page users view start -->
+    <section class="app-user-view">
+      <!-- User Card & Plan Starts -->
+      <div class="row">
+        <!-- User Card starts-->
+        <div class="col-xl-12 col-lg-8 col-md-7">
+          <div class="card user-card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-xl-6 col-lg-12 d-flex flex-column justify-content-between border-container-lg">
+                  <div class="user-avatar-section">
+                    <div class="d-flex justify-content-start">
+                      <!-- <div>
+                        <img class="img-fluid rounded" [src]="avatar" height="104" width="104" alt="User avatar" />
+                      </div> -->
+
+                      <div class="d-flex flex-column ml-1">
+                        <div class="user-info mb-1">
+                          <h4 class="mb-0">{{ product.title| titlecase }}</h4>
+                          <span class="card-text">{{ product.branch | titlecase}}</span>
+                        </div>
+                        <div class="d-flex flex-wrap">
+
+                          <a routerLink="/apps/product/{{ product.productId }}/edit"
+                             [hidden]="!isEdit"
+                                  Class="btn btn-primary" rippleEffect
+                                  data-cy="productEditButton"
+                            >{{ 'VIEW.BTN_EDIT' | translate }}</a
+                          >
+                          <button class="btn btn-outline-danger ml-1"
+                                  type="submit"
+                                  (click)="delete(product,'p')"
+                                  [hidden]="!isEdit"
+                                  rippleEffect>
+                            {{ 'VIEW.BTN_DELETE' | translate }}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center user-total-numbers">
+                    <!-- <div class="d-flex align-items-center mr-2">
+                      <div class="color-box bg-light-primary">
+                        <i [data-feather]="'dollar-sign'" [class]="'text-primary'"></i>
+                      </div>
+                      <div class="ml-1">
+                        <h5 class="mb-0">23.3k</h5>
+                        <small>Monthly Sales</small>
+                      </div>
+                    </div> -->
+                    <!-- <div class="d-flex align-items-center">
+                      <div class="color-box bg-light-success">
+                        <i [data-feather]="'trending-up'" [class]="'text-success'"></i>
+                      </div>
+                      <div class="ml-1">
+                        <h5 class="mb-0">$99.87K</h5>
+                        <small>Annual Profit</small>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-12 mt-2 mt-xl-0">
+                  <div class="user-info-wrapper">
+                    <div class="d-flex flex-wrap">
+                      <div class="user-info-title">
+                        <i data-feather="user" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">{{ 'HEADER.TITLE' | translate | titlecase }}</span>
+                      </div>
+                      <p class="card-text mb-0">{{ product.title| titlecase }}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="star" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">{{ 'HEADER.BRANCH' | translate| titlecase }}</span>
+                      </div>
+                      <p class="card-text mb-0">{{ product.branch | titlecase}}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="star" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">{{ 'HEADER.CODE'| translate  | titlecase}}</span>
+                      </div>
+                      <p class="card-text mb-0">{{ product.code| titlecase }}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="check" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">{{ 'HEADER.DESCRIPTION'| translate | titlecase }}</span>
+                      </div>
+                      <p class="card-text mb-0">{{ product.description| titlecase }}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="check" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">{{ 'HEADER.DEFAULTDISCOUNT'| translate | titlecase }}</span>
+                      </div>
+                      <p class="card-text mb-0">{{ product.defaultDiscount  }}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="flag" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">{{ 'HEADER.STARTDATE'| translate| titlecase  }}</span>
+                      </div>
+                      <p class="card-text mb-0">{{ product.startDate | titlecase| date:'dd-MM-yyyy'}}</p>
+                    </div>
+                    <div class="d-flex flex-wrap my-50">
+                      <div class="user-info-title">
+                        <i data-feather="flag" class="mr-1"></i>
+                        <span class="card-text user-info-title font-weight-bold mb-0">{{ 'HEADER.EXPIRATIONDATE' | translate| titlecase }}</span>
+                      </div>
+                      <p class="card-text mb-0">{{ product.expirationDate| titlecase| date:'dd-MM-yyyy' }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /User Card Ends-->
+
+
+      </div>
+      <!-- User Card & Plan Ends -->
+      <!-- User Timeline & Permissions Starts -->
+      <div class="row">
+
+        <!-- Modern Vertical Wizard -->
+        <section class="modern-vertical-wizard">
+          <div id="stepper4" class="bs-stepper vertical wizard-modern modern-vertical-wizard-example">
+            <div class="bs-stepper-header">
+              <div class="step" data-target="#warranties-details-vertical-modern">
+                <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">
+                <i data-feather="grid" class="font-medium-3"></i>
+              </span>
+                  <span class="bs-stepper-label">
+                <span class="bs-stepper-title">{{ 'MENU.btn_warranty'| translate| titlecase  }}</span>
+                <span class="bs-stepper-subtitle">{{ 'MENU.setup'| translate| titlecase  }} {{ 'MENU.btn_warranty'| translate| titlecase  }}</span>
+              </span>
+                </button>
+              </div>
+              <!-- <div class="step" data-target="#tax-info-vertical-modern">
+                <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">
+                <i data-feather="dollar-sign" class="font-medium-3"></i>
+              </span>
+                  <span class="bs-stepper-label">
+                <span class="bs-stepper-title">{{ 'MENU.btn_tax'| translate| titlecase  }}</span>
+                <span class="bs-stepper-subtitle">{{ 'MENU.setup'| translate| titlecase  }} {{ 'MENU.btn_tax'| translate| titlecase  }}</span>
+              </span>
+                </button>
+              </div> -->
+              <div class="step" data-target="#fees-info-vertical-modern">
+                <button type="button" class="step-trigger" (click)="feesLoad()">
+              <span class="bs-stepper-box">
+                <i data-feather="dollar-sign" class="font-medium-3"></i>
+              </span>
+                  <span class="bs-stepper-label">
+                <span class="bs-stepper-title">{{ 'MENU.btn_fee'| translate| titlecase  }}</span>
+                <span class="bs-stepper-subtitle">{{ 'MENU.setup'| translate| titlecase  }} {{ 'MENU.btn_fee'| translate| titlecase  }}</span>
+              </span>
+                </button>
+              </div>
+              <div class="step" data-target="#agencies-info-vertical-modern">
+                <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">
+                <i data-feather="home" class="font-medium-3"></i>
+              </span>
+                  <span class="bs-stepper-label">
+                <span class="bs-stepper-title">{{ 'MENU.btn_shop'| translate| titlecase  }}</span>
+                <span class="bs-stepper-subtitle">{{ 'MENU.setup'| translate| titlecase  }} {{ 'MENU.btn_shop'| translate| titlecase  }}</span>
+              </span>
+                </button>
+              </div>
+              <div class="step" data-target="#duration-info-vertical-modern">
+                <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">
+                <i data-feather="clock" class="font-medium-3"></i>
+              </span>
+                  <span class="bs-stepper-label">
+                <span class="bs-stepper-title">{{ 'MENU.btn_duration'| translate| titlecase  }} </span>
+                <span class="bs-stepper-subtitle">{{ 'MENU.setup'| translate| titlecase  }} {{ 'MENU.btn_duration'| translate| titlecase  }}</span>
+              </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="bs-stepper-content">
+              <!-- warranties-->
+              <div id="warranties-details-vertical-modern" class="content">
+                <div class="content-header">
+                  <div class="row">
+                    <div class="form-check col-md-7">
+                      <h5 class="mb-0">{{ 'MENU.Details'| translate| titlecase  }} {{ 'MENU.btn_warranty'| translate| titlecase  }} </h5>
+
+                    </div>
+                    <div class="col-md-5 text-right">
+                      <!-- Button trigger modal -->
+                      <button (click)="modalOpenForm(modalSelect)" [hidden]="!isEdit" type="button"
+                               class="btn btn-icon btn-outline-primary" rippleEffect>
+                        <span  [data-feather]="'plus'"></span>
+                      </button>
+                      <!-- Modal -->
+                      <ng-template #modalSelect let-modal>
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel1">Product Warranties</h4>
+                          <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" tabindex="0" ngbAutofocus>
+                          <!-- Select Custom header footer template -->
+                          <ng-select
+                                  [multiple]="true"
+                                  [closeOnSelect]="false"
+                                  [items]="selectProductWarranties"
+                                  [(ngModel)]="selectProductWarrantiesSelected"
+                                  placeholder="Select warranty"
+                                  bindLabel="title"
+                                  bindValue="warrantyId"
+                          >
+                            <ng-template ng-header-tmp>
+                              <button
+                                      (click)="productWarrantiesSelectAll()"
+                                      class="btn btn-sm btn-secondary mr-1"
+                                      rippleEffect
+                              >
+                                Select all
+                              </button>
+                              <button (click)="productWarrantiesUnselectAll()" class="btn btn-sm btn-secondary" rippleEffect>
+                                Unselect all
+                              </button>
+                            </ng-template>
+                            <ng-template ng-footer-tmp>
+                              Selected count: {{ selectProductWarrantiesSelected.length }}
+                            </ng-template>
+                          </ng-select>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" (click)="modal.close(addwarrantiesModal())" rippleEffect>
+                            Accept
+                          </button>
+                        </div>
+                      </ng-template>
+                      <!-- / Modal -->
+
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <!-- Product Warranties Starts -->
+                  <div class="form-group col-md-12">
+                 <div class="card user-card">
+                      <div class="table-responsive">
+                        <table class="table  table-bordered table-striped text-center" *ngIf="dataProductWarranties" >
+                          <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">{{ 'WARRANTY.warranty' | translate }}</th>
+                            <th scope="col">{{ 'WARRANTY.required' | translate }}</th>
+                            <th scope="col" [hidden]="!isEdit" >{{ 'HEADER.ACTIONS' | translate }}</th>
+                          </tr>
+                          </thead>
+
+                          <tbody cdkDropList (cdkDropListDropped)="onDrop($event)">
+                          <tr  *ngFor="let productwarranty of dataProductWarranties"
+                               cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="!isEdit">
+                            <th class="col-xs">
+                              <div class="drag-handle">
+                                <ng-container [ngTemplateOutlet]="dragHandleTmpl"> </ng-container>
+                                {{ productwarranty.rank }}
+                              </div>
+                            </th>
+                            <td class="col-md">
+                              <a
+                                    routerLink="/apps/warranty/warranty-view/{{ productwarranty.warrantyId }}"
+                                    class="font-medium-1 d-block"
+                            ><span class="font-weight-bold">{{ productwarranty.warranty }}</span></a
+                            ></td>
+
+                            <td class="col-md">
+                               <div class="custom-control custom-checkbox">
+                                 <input type="checkbox" class="custom-control-input" id="warrantyMandatory+{{ productwarranty.rank }}"
+                                        [(ngModel)]="productwarranty.mandatory" [disabled]="!isEdit"
+                                          (ngModelChange)="onNgModelChange(productwarranty, $event)"
+                                       />
+
+                                 <label class="custom-control-label" for="warrantyMandatory+{{ productwarranty.rank }}"></label>
+                               </div>
+                             </td>
+
+
+                            <td [hidden]="!isEdit"  class="col-md">
+
+                              <div   container="body">
+                                <a (click)="delete(productwarranty,'pw')"
+                                   ngbDropdownItem
+                                   type="submit"
+                                   [disabled]="!isEdit"
+                                   [hidden]="!isEdit"
+                                ><span [data-feather]="'trash'" [size]="'16'" [class]="'mr-50  text-danger'"></span></a
+                                >
+                              </div>
+                            </td>
+
+                            <!-- Preview -->
+                            <div *cdkDragPreview matchSize="true" class="container dragdrop-placeholder">
+                              {{productwarranty.warranty}}
+                            </div>
+                          </tr>
+                          </tbody>
+                        </table>
+
+                      </div>
+                  <ng-template #dragHandleTmpl>
+                        <svg class="bi bi-list handle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                                d="M2.5 11.5A.5.5 0 013 11h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 3h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+                      </ng-template>
+                 </div>
+                  </div>
+                  <!-- Product Warranties Ends -->
+                </div>
+
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-outline-secondary btn-prev" disabled rippleEffect>
+                    <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  </button>
+                  <button class="btn btn-primary btn-next" (click)="modernVerticalNext()" rippleEffect>
+                    <span class="align-middle d-sm-inline-block d-none">Next</span>
+                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- End warranties-->
+
+              <!-- tax-->
+              <!-- <div id="tax-info-vertical-modern" class="content">
+                <div class="content-header">
+                  <h5 class="mb-0">tax Info</h5>
+                  <small>Enter Your tax Info.</small>
+                </div>
+                <div class="row">
+                  <div class="form-group form-password-toggle col-md-6">
+                    <label class="form-label" for="vertical-modern-password">Password</label>
+                    <input
+                            type="password"
+                            id="vertical-modern-password"
+                            class="form-control"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                    />
+                  </div>
+                  <div class="form-group form-password-toggle col-md-6">
+                    <label class="form-label" for="vertical-modern-confirm-password">Confirm Password</label>
+                    <input
+                            type="password"
+                            id="vertical-modern-confirm-password"
+                            class="form-control"
+                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                    />
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-primary btn-prev" (click)="modernVerticalPrevious()" rippleEffect>
+                    <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  </button>
+                  <button class="btn btn-primary btn-next" (click)="modernVerticalNext()" rippleEffect>
+                    <span class="align-middle d-sm-inline-block d-none">Next</span>
+                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                  </button>
+                </div>
+              </div> -->
+              <!-- End tax-->
+
+              <!-- fees-->
+              <div id="fees-info-vertical-modern" class="content">
+                <div class="content-header">
+                  <div class="row">
+                    <div class="form-check col-md-7">
+                      <h5 class="mb-0">fees Details</h5>
+                      <small class="text-muted">Enter Your fees Details.</small>
+                    </div>
+                    <div class="col-md-5 text-right">
+                      <!-- Button trigger modal -->
+                      <button (click)="modalOpenFormFees(modalFees)" [hidden]="!isEdit" type="button"
+                              class="btn btn-icon btn-outline-primary" rippleEffect>
+                        <span [data-feather]="'plus'"></span>
+                      </button>
+                      <!-- Modal -->
+                      <ng-template #modalFees let-modal>
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabelFess">Product Fees</h4>
+                          <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" tabindex="0" ngbAutofocus>
+                          <!-- Select Custom header footer template -->
+                          <ng-select
+                                  [multiple]="true"
+                                  [closeOnSelect]="false"
+                                  [items]="selectProductFees"
+                                  [(ngModel)]="selectProductFeesSelected"
+                                  placeholder="Select Fees"
+                                  bindLabel="title"
+                                  bindValue="feesId"
+                          >
+                            <ng-template ng-header-tmp>
+                              <button
+                                      (click)="ProductFeesSelectAll()"
+                                      class="btn btn-sm btn-secondary mr-1"
+                                      rippleEffect
+                              >
+                                Select all
+                              </button>
+                              <button (click)="ProductFeesUnselectAll()" class="btn btn-sm btn-secondary" rippleEffect>
+                                Unselect all
+                              </button>
+                            </ng-template>
+                            <ng-template ng-footer-tmp>
+                              Selected count: {{ selectProductFeesSelected.length }}
+                            </ng-template>
+                          </ng-select>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" (click)="modal.close(addFeesModal())" rippleEffect>
+                            Accept
+                          </button>
+                        </div>
+                      </ng-template>
+                      <!-- / Modal -->
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!-- Product Fees Starts -->
+                  <div class="form-group col-md-12">
+                    <div class="card user-card">
+                      <div class="table-responsive">
+                        <table class="table  table-bordered table-striped text-center" *ngIf="dataProductFees" >
+                          <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">{{ 'FEE.FEES' | translate }}</th>
+                            <th scope="col" [hidden]="!isEdit" >{{ 'HEADER.ACTIONS' | translate }}</th>
+                          </tr>
+                          </thead>
+
+                          <tbody cdkDropList (cdkDropListDropped)="onDropFee($event)">
+                          <tr  *ngFor="let productFees of dataProductFees"
+                               cdkDrag cdkDragLockAxis="y" [cdkDragDisabled]="!isEdit">
+                            <th class="col-xs">
+                              <div class="drag-handle">
+                                <ng-container [ngTemplateOutlet]="dragHandleFee"> </ng-container>
+                                {{ productFees.rank }}
+                              </div>
+                            </th>
+
+                            <td class="col-md">
+                              <a
+                                      routerLink="/apps/fees/fees-view/{{ productFees.id }}"
+                                      class="font-medium-1 d-block"
+                              ><span class="font-weight-bold">{{ productFees.fees }}</span></a
+                              ></td>
+                            <td [hidden]="!isEdit"  class="col-md">
+                              <div   container="body">
+                                <a (click)="delete(productFees,'pf')"
+                                   ngbDropdownItem
+                                   type="submit"
+                                   [disabled]="!isEdit"
+                                   [hidden]="!isEdit"
+                                ><span [data-feather]="'trash'" [size]="'16'" [class]="'mr-50  text-danger'"></span></a
+                                >
+                              </div>
+                            </td>
+                            <!-- Preview -->
+                            <div *cdkDragPreview matchSize="true" class="container dragdrop-placeholder">
+                              {{productFees.fees}}
+                            </div>
+                          </tr>
+                          </tbody>
+                        </table>
+
+                      </div>
+                      <ng-template #dragHandleFee>
+                        <svg class="bi bi-list handle" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                                d="M2.5 11.5A.5.5 0 013 11h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 3h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <!-- Product Fees Ends -->
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-primary btn-prev" (click)="modernVerticalPrevious()" rippleEffect>
+                    <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  </button>
+                  <button class="btn btn-primary btn-next" (click)="modernVerticalNext()" rippleEffect>
+                    <span class="align-middle d-sm-inline-block d-none">Next</span>
+                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- End fees-->
+
+              <!-- agencies-->
+              <div id="agencies-info-vertical-modern" class="content">
+
+                <div class="content-header">
+                  <div class="row">
+                    <div class="form-check col-md-7">
+                      <h5 class="mb-0">agencies Details</h5>
+                      <small class="text-muted">Enter Your agencies Details.</small>
+                    </div>
+                    <div class="col-md-5 text-right">
+                      <!-- Button trigger modal -->
+                      <button (click)="modalOpenFormShops(product)" [hidden]="!isEdit" type="button"
+                              class="btn btn-icon btn-outline-primary" rippleEffect>
+                        <span [data-feather]="'plus'"></span>
+                      </button>
+
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <!-- Product agencies Starts -->
+                  <div class="form-group col-md-12">
+                    <div class="card user-card">
+                      <div class="table-responsive">
+                        <table class="table table-striped table-borderless"
+                               *ngIf="dataProductShops" >
+                          <thead class="thead-light">
+                          <tr>
+                            <th>{{ 'MODALSHOP.SHOP' | translate }}</th>
+                            <th>{{ 'MODALSHOP.REDUCTION' | translate }}</th>
+                            <th  [hidden]="!isEdit">{{ 'HEADER.ACTIONS' | translate }}</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let productShops of dataProductShops">
+
+                            <td >
+                              <a
+                                      routerLink="/apps/shop/shop-view/{{productShops.shop }}"
+                                      class="font-medium-1 d-block"
+                              ><span class="font-weight-bold">{{ productShops.shop }}</span></a
+                              ></td>
+
+                            <td>{{ productShops.reduction }}</td>
+
+
+                            <td [hidden]="!isEdit" class="col-md">
+
+                              <div    container="body">
+                                <a (click)="delete(productShops,'pshop')"
+                                   ngbDropdownItem
+                                   type="submit"
+                                   [disabled]="!isEdit"
+                                   [hidden]="!isEdit"
+                                ><span [data-feather]="'trash'" [size]="'16'" [class]="'mr-50  text-danger'"></span></a
+                                >
+                              </div>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Product duration Ends -->
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-primary btn-prev" (click)="modernVerticalPrevious()" rippleEffect>
+                    <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  </button>
+                  <button class="btn btn-primary btn-next" (click)="modernVerticalNext()" rippleEffect>
+                    <span class="align-middle d-sm-inline-block d-none">Next</span>
+                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- End agencies-->
+
+              <!-- duration-->
+              <div id="duration-info-vertical-modern" class="content">
+
+                <div class="content-header">
+                  <div class="row">
+                    <div class="form-check col-md-7">
+                      <h5 class="mb-0">{{ 'MENU.btn_duration'| translate| titlecase  }}  {{ 'MENU.setup'| translate| titlecase  }}</h5>
+                      <small class="text-muted">Enter Your {{ 'MENU.btn_duration'| translate| titlecase  }}  {{ 'MENU.setup'| translate| titlecase  }}.</small>
+                    </div>
+                    <div class="col-md-5 text-right">
+                      <!-- Button trigger modal -->
+                      <button (click)="modalOpenFormDurations(product,0)" [hidden]="!isEdit" type="button"
+                              class="btn btn-icon btn-outline-primary" rippleEffect>
+                        <span [data-feather]="'plus'"></span>
+                      </button>
+
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <!-- Product duration Starts -->
+                  <div class="form-group col-md-12">
+                    <div class="card user-card">
+                      <div class="table-responsive">
+                        <table class="table table-striped table-borderless"
+                               *ngIf="dataProductDurations" >
+                          <thead class="thead-light">
+                          <tr>
+                            <th>{{ 'MODALDURATION.DURATION' | translate }}</th>
+                            <th>{{ 'MODALDURATION.PROPORTION' | translate }}</th>
+                            <th  [hidden]="!isEdit">{{ 'HEADER.ACTIONS' | translate }}</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr *ngFor="let productDuration of dataProductDurations">
+                            <td >
+                              <a
+                                      routerLink="/apps/shop/duration-view/{{productDuration.id }}"
+                                      class="font-medium-1 d-block"
+                              ><span class="font-weight-bold">{{ productDuration.duration }}</span></a
+                              ></td>
+
+                            <td>
+                              <div>
+                                <span *ngFor="let proportion of productDuration?.proportions" class="badge badge-pill badge-primary">
+                                  {{proportion.title}}
+                                </span>
+                              </div>
+                            </td>
+
+
+                            <td [hidden]="!isEdit" class="col-md">
+
+                              <div class="d-flex justify-content-center flex-nowrap">
+                                <a (click)="modalOpenFormDurations(product,productDuration)"
+                                   ngbDropdownItem
+                                   type="submit"
+                                   [disabled]="!isEdit"
+                                   [hidden]="!isEdit"
+                                ><span [data-feather]="'edit'" [size]="'16'" [class]="'mr-50  text-primary'"></span></a
+                                >
+                                <a (click)="delete(productDuration,'pd')"
+                                   ngbDropdownItem
+                                   type="submit"
+                                   [disabled]="!isEdit"
+                                   [hidden]="!isEdit"
+                                ><span [data-feather]="'trash'" [size]="'16'" [class]="'mr-50  text-danger'"></span></a
+                                >
+                                </div>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Product duration Ends -->
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-primary btn-prev" (click)="modernVerticalPrevious()" rippleEffect>
+                    <i data-feather="arrow-left" class="align-middle mr-sm-25 mr-0"></i>
+                    <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                  </button>
+                  <button class="btn btn-primary btn-next" (click)="modernVerticalNext()" rippleEffect>
+                    <span class="align-middle d-sm-inline-block d-none">Next</span>
+                    <i data-feather="arrow-right" class="align-middle ml-sm-25 ml-0"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- End duration-->
+
+
+              <!-- duration-->
+
+              <!-- End duration-->
+            </div>
+          </div>
+        </section>
+        <!-- /Modern Vertical Wizard -->
+
+      </div>
+      <!-- User Timeline & Permissions Ends -->
+
+
+    </section>
+    <!-- page users view end -->
+  </div>
+</div>

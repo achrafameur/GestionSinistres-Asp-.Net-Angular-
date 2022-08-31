@@ -1,0 +1,89 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <section class="users-list-wrapper"></section>
+    <div class="card">
+      <div class="card-body">
+        <table class="table table-striped table-bordered ">
+          <tr>
+            <td>Expert Type :</td>
+            <td>{{ expert.typeExpert }}</td>
+          </tr>
+          <tr>
+            <td>Code :</td>
+            <td>{{ expert.code }}</td>
+          </tr>
+          <tr>
+            <td>First Name :</td>
+            <td>{{ expert.fName }}</td>
+          </tr>
+          <tr>
+            <td>Last Name :</td>
+            <td>{{ expert.lName }}</td>
+          </tr>
+          <tr>
+            <td>CIN :</td>
+            <!-- <td>{{nature.title}}</td> -->
+            <td>{{ expert.cin }}</td>
+          </tr>
+          <tr>
+            <td>Email :</td>
+            <td>{{ expert.email }}</td>
+          </tr>
+          <tr>
+            <td>Birth Date :</td>
+            <td>{{ expert.birthDate | date }}</td>
+          </tr>
+          <tr>
+            <td>Sex :</td>
+            <td>{{ expert.sexId }}</td>
+          </tr>
+          <tr>
+            <td>Phone Number :</td>
+            <td>{{ expert.tel }}</td>
+          </tr>
+          <tr>
+            <td>Fixe:</td>
+            <td>{{ expert.fixe }}</td>
+          </tr>
+          <tr>
+            <td>Fax :</td>
+            <td>{{ expert.fax }}</td>
+          </tr>
+          <tr>
+            <td>Governorate :</td>
+            <td>{{ expert.governorate }}</td>
+          </tr>
+          <tr>
+            <td>Adress :</td>
+            <td>{{ expert.address }}</td>
+          </tr>
+          <tr>
+            <td>Cancellation Date :</td>
+            <td>{{ expert.cancellationDate | date }}</td>
+          </tr>
+          <tr>
+            <td>Registration Date :</td>
+            <td>{{ expert.registrationDate | date }}</td>
+          </tr>
+          <tr>
+            <td>Attached Specialities :</td>
+            <td>
+              <div *ngFor="let el of expertspecialities">
+                <p>{{ el.chainElement }}</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>Attached Sinister Natures :</td>
+            <td>
+              <div *ngFor="let el of expertsinisternatures">
+                <p>{{ el.sinisterNature }}</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

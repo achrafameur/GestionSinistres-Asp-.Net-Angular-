@@ -1,0 +1,207 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <section class="users-list-wrapper"></section>
+    <div class="card">
+      <table class="table table-hover">
+        <tr>
+          <td>{{ 'ADD.TITLE' | translate }}:</td>
+          <td>{{ feature.title }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'ADD.DESCRIPTION' | translate }}:</td>
+          <td>{{ feature.description }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'ADD.SYMBOL' | translate }}:</td>
+          <td>{{ feature.symbol }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'ADD.NATURE' | translate }}:</td>
+          <!-- <td>{{nature.title}}</td> -->
+          <td>{{ feature.nature }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'ADD.LIST' | translate }}:</td>
+          <td>{{ feature.chain }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'ADD.FIXED' | translate }}:</td>
+          <td>{{ feature.fixed }}</td>
+        </tr>
+        <tr>
+          <td>Maximum:</td>
+          <td>{{ feature.maximum }}</td>
+        </tr>
+        <tr>
+          <td>Minimum:</td>
+          <td>{{ feature.minimum }}</td>
+        </tr>
+        <tr>
+          <td>{{ 'ADD.ALTERABLE1' | translate }}:</td>
+          <td><div class="d-flex">
+            <div
+
+            *ngIf="
+
+              feature.alterable == true;
+
+              else elseBlock
+
+            "
+
+          >
+
+            <svg
+
+              xmlns="http://www.w3.org/2000/svg"
+
+              width="16"
+
+              height="16"
+
+              fill="green"
+
+              class="bi bi-check-circle-fill"
+
+              viewBox="0 0 16 16"
+
+            >
+
+              <path
+
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+
+              />
+
+            </svg>
+
+          </div> </div></td>
+        </tr>
+        <tr>
+          <td>{{ 'ADD.ISPRINCIPALE1' | translate }}:</td>
+          <td><div class="d-flex">
+            <div
+
+            *ngIf="
+
+              feature.isPrincipal == true;
+
+              else elseBlock
+
+            "
+
+          >
+
+            <svg
+
+              xmlns="http://www.w3.org/2000/svg"
+
+              width="16"
+
+              height="16"
+
+              fill="green"
+
+              class="bi bi-check-circle-fill"
+
+              viewBox="0 0 16 16"
+
+            >
+
+              <path
+
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+
+              />
+
+            </svg>
+
+          </div> </div></td>
+        </tr>
+        <tr>
+          <td>{{ 'ADD.ITEMS' | translate }}:</td>
+          <td><div *ngFor="let item of feature.featureItems ">{{item.item}}</div></td>
+        </tr>
+      </table>
+
+      <!-- <div class="col-10">
+      <div>
+       <h4>Caractéristique associé à l'élement :</h4>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="custom-control custom-checkbox m-2" *ngFor="let article of articleList">
+        <input type="checkbox" [value]="articleList.title" class="custom-control-input" [name]="article.id" [id]="article.id" formControlName="item" >
+        <label class="custom-control-label" [for]="article.id" >
+        {{article.title}}
+      </label>
+    </div>
+      </div> -->
+
+      <!-- <form
+        class="form form-vertical"
+        #featureItemsForm="ngForm"
+        (ngSubmit)="attachFeatureItems(featureItemsForm)"
+      >
+        <div class="col-5 m-2">
+          <h4 for="email-id-vertical">Attach New feature Item</h4>
+        </div>
+        <div class="col-5">
+          <div
+            class="custom-control custom-checkbox m-2"
+            *ngFor="let el of itemList"
+          >
+            <input
+              name="featureItemId"
+              required
+              type="checkbox"
+              [(ngModel)]="el.isChecked"
+              (change)="onChange()"
+            />
+            {{ el.title }}
+          </div>
+        </div>
+        <div class="col-5 p-2">
+          <button
+            class="btn btn-sm btn-success"
+            type="submit"
+            [disabled]="!featureItemsForm.valid"
+            rippleEffect
+          >
+            Confirm
+          </button>
+        </div>
+      </form> -->
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock>
+
+  <svg
+
+    xmlns="http://www.w3.org/2000/svg"
+
+    width="16"
+
+    height="16"
+
+    fill="red"
+
+    class="bi bi-file-x-fill"
+
+    viewBox="0 0 16 16"
+
+  >
+  
+
+    <path
+
+      d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146 8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 1 1 .708-.708z"
+
+    />
+
+  </svg>
+
+</ng-template>

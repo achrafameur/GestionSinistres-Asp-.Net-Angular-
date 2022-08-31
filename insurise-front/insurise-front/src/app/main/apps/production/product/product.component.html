@@ -1,0 +1,169 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <section class="users-list-wrapper">
+        <!-- users filter start -->
+        <div class="card">
+            <h5 class="card-header">Search Filter</h5>
+            <div class="card-body">
+                <div class="users-list-filter">
+                    <form>
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <fieldset class="form-group">
+                                    <ng-select
+                                            [items]="selectBranch"
+                                            [(ngModel)]="selectedBranch"
+                                            name="selectedBranch"
+                                            bindLabel="title"
+                                            placeholder="Select Branch"
+                                            (change)="filterByBranch($event)"
+                                    ></ng-select>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- users filter end -->
+        <!-- Multilangual Datatables -->
+        <section id="ngx-datatable-multi-purpose">
+            <div class="card">
+                <h4 class="card-title"></h4>
+                <div class="row">
+                    <div class="col-12 mb-50">
+                        <button class="btn btn-primary ml-1" rippleEffect>
+                            <i data-feather="plus" class="mr-0 mr-sm-1"></i>
+                            <span routerLink="/apps/product/add" class="d-none d-sm-inline-block">Add New Product</span>
+                        </button>
+                        <!-- <a csvLink [data]="exportCSVData" (click)="exportCSV()" class="btn btn-outline-secondary float-right mr-1" rippleEffect
+                        >Export CSV</a
+                        > -->
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="d-flex justify-content-between align-items-center m-1">
+                            <label class="d-flex align-items-center"
+                            >Show
+                                <select class="form-control mx-25" [(ngModel)]="selectedOption"  (change)="filterByselectedOption($event)">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                entries</label
+                            >
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 d-flex justify-content-md-end">
+                        <div class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0">
+                            <label class="d-flex align-items-center"
+                            >Search<input
+                                    type="search"
+                                    placeholder="Search"
+                                    class="form-control ml-25"
+                                    (keyup)="filterUpdate($event)"
+                            /></label>
+                        </div>
+                    </div>
+                </div>
+                <ngx-datatable
+                    #table
+                    class="bootstrap core-bootstrap"
+                    [columnMode]="ColumnMode.force"
+                    [headerHeight]="headerHeight"
+                    [rowHeight]="rowHeight"
+                    [footerHeight]="footerHeight"
+                    rowHeight="auto"
+                    [limit]="selectedOption"
+                    [rows]="products"
+                    [scrollbarH]="true"
+                    (activate)="onActivate($event)"
+                    (select)="onSelect($event)"
+                >
+                    <ngx-datatable-column  name="productId" prop="productId" *ngIf="ShowHide"></ngx-datatable-column>
+                    <ngx-datatable-column name="{{ 'HEADER.TITLE' | translate }}" prop="title" [width]="200">
+                        <ng-template let-row="row" let-title="value" ngx-datatable-cell-template>
+                            <div class="d-flex align-items-center">
+
+                                <div class="cell-line-height">
+                                    <a
+                                            routerLink="/apps/product/product-view/{{ row.productId }}"
+                                            class="font-medium-1 d-block"
+                                    ><span class="font-weight-bold">{{ title }}</span></a
+                                    >
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column  name="{{ 'HEADER.BRANCH' | translate }}" prop="branch" [width]="250"></ngx-datatable-column>
+                    <ngx-datatable-column name="{{ 'HEADER.CODE' | translate }}" prop="code" [width]="50"></ngx-datatable-column>
+                    <ngx-datatable-column name="{{ 'HEADER.STARTDATE' | translate }}" prop="startDate" [width]="120">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            {{value | date:'dd-MM-yyyy'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="{{ 'HEADER.EXPIRATIONDATE' | translate }}" prop="expirationDate" [width]="120">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            {{value | date:'dd-MM-yyyy'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="{{ 'HEADER.CREATIONDATE' | translate }}" prop="creationDate" [width]="120">
+                        <ng-template let-value="value" ngx-datatable-cell-template>
+                            {{value | date:'dd-MM-yyyy'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="{{ 'HEADER.ACTIONS' | translate }}" [width]="40" [sortable]="false">
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <div ngbDropdown container="body">
+                                <button ngbDropdownToggle type="button" class="btn icon-btn btn-sm hide-arrow" rippleEffect>
+                                    <span [data-feather]="'more-vertical'" [class]="'cursor-pointer'"></span>
+                                </button>
+                                <div ngbDropdownMenu>
+                                    <a
+                                            routerLink="/apps/product/product-view/{{ row.productId }}" ngbDropdownItem
+                                    ><span [data-feather]="'file-text'" [size]="'16'" [class]="'mr-50'"></span> Details</a
+                                    ><a
+                                       routerLink="/apps/product/{{ row.productId }}/edit"
+                                        ngbDropdownItem
+                                ><span [data-feather]="'edit'" [size]="'16'" [class]="'mr-50'"></span> Edit</a
+                                ><a (click)="delete(row)"
+                                    ngbDropdownItem
+                                    type="submit"
+                                ><span [data-feather]="'trash'" [size]="'16'" [class]="'mr-50'"></span> Delete</a
+                                >
+                                </div>
+                            </div>
+                        </ng-template>
+
+                    </ngx-datatable-column>
+                </ngx-datatable>
+
+
+                <div *ngIf="products && products.length > 0">
+
+
+                    <div class="d-flex justify-content-center">
+                        <ngb-pagination
+                                [collectionSize]="totalItems"
+                                [(page)]="ngbPaginationPage"
+                                [pageSize]="itemsPerPage"
+                                [maxSize]="5"
+                                [rotate]="true"
+                                [boundaryLinks]="true"
+                                (pageChange)="loadPage($event)"
+                        ></ngb-pagination>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!--/ Multilangual Datatables -->
+        </section>
+    </div>
+
+</div>

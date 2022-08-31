@@ -1,0 +1,213 @@
+<section id="ngx-datatable-multi-purpose">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="card">
+    <div class="card-body">
+      <form
+        class="form form-horizontal"
+        [formGroup]="addAveragCostForm"
+        (ngSubmit)="add()"
+      >
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.AVERAGECOST" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="number"
+                  id="first-name-vertical"
+                  class="form-control w-60"
+                  placeholder="{{ 'ADD.AVERAGECOST' | translate }}"
+                  formControlName="averageCost"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label"></div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addAveragCostForm.get('averageCost')!.invalid &&
+                  (addAveragCostForm.get('averageCost')!.dirty ||
+                    addAveragCostForm.get('averageCost')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addAveragCostForm.get('averageCost')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.STARTDATE" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="date"
+                  id="dateStart"
+                  class="form-control w-60"
+                  name="form-description"
+                  placeholder="{{ 'ADD.STARTDATE' | translate }}"
+                  formControlName="dateStart"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label"></div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addAveragCostForm.get('dateStart')!.invalid &&
+                  (addAveragCostForm.get('dateStart')!.dirty ||
+                    addAveragCostForm.get('dateStart')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addAveragCostForm.get('dateStart')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+              <div
+                *ngIf="intervalDateError.isError"
+                class="col-9 form-text text-danger"
+              >
+                {{ intervalDateError.errorMessage }}
+              </div>
+            </div>
+          </div>
+          <!-- <ng2-flatpickr [ngClass]="'firstsecond'" [config]="basicDateOptions" name="basicDate"></ng2-flatpickr> -->
+          <div class="col-12">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.ENDDATE" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="date"
+                  id="dateEnd"
+                  class="form-control w-60"
+                  name="form-description"
+                  placeholder="{{ 'ADD.ENDDATE' | translate }}"
+                  formControlName="dateEnd"
+                  required
+                />
+              </div>
+              <!-- <div *ngIf="FormError.isError" class="alert alert-danger">
+              {{ FormError.errorMessage }}
+            </div> -->
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label"></div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addAveragCostForm.get('dateEnd')!.invalid &&
+                  (addAveragCostForm.get('dateEnd')!.dirty ||
+                    addAveragCostForm.get('dateEnd')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addAveragCostForm.get('dateEnd')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+              <div
+                *ngIf="FormError.isError"
+                class="col-9 form-text text-danger"
+              >
+                {{ FormError.errorMessage }}
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.SINISTERNATURE" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <select
+                  class="custom-select form-control w-60"
+                  formControlName="sinisterNatureId"
+                >
+                  <option
+                    id="sinisterNature"
+                    [ngValue]="el.sinisterNatureId"
+                    *ngFor="let el of sinisterNatureList"
+                  >
+                    {{ el.title }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label"></div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addAveragCostForm.get('sinisterNatureId')!.invalid &&
+                  (addAveragCostForm.get('sinisterNatureId')!.dirty ||
+                    addAveragCostForm.get('sinisterNatureId')!.touched)
+                "
+              >
+                <small
+                  *ngIf="
+                    addAveragCostForm.get('sinisterNatureId')?.errors?.required
+                  "
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9 offset-sm-3">
+            <!-- <button
+              class="btn btn-primary mr-1"
+              type="submit"
+              [swal]="SweetAlertSuccess"
+              rippleEffect
+            >
+            {{ 'BUTTONS.SUBMIT' | translate }}
+            </button>
+            <swal
+              #SweetAlertSuccess
+              (open)="ConfirmTextOpen()"
+            >
+            </swal> -->
+            <button
+            type="submit"
+            rippleEffect
+            class="btn btn-primary mr-1"
+          >
+          {{ 'BUTTONS.SUBMIT' | translate }}
+          </button>
+            <button type="reset" rippleEffect class="btn btn-outline-danger">
+              {{ "BUTTONS.RESET" | translate }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

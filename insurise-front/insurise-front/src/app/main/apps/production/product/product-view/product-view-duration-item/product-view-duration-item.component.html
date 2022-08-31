@@ -1,0 +1,31 @@
+<div class="card ecommerce-card">
+
+    <div class="card-body">
+        <div class="item-name">
+            <h6 class="mb-0">
+                <a [routerLink]="'/apps/e-commerce/details/' + product.id" class="text-body">{{ product.name }}</a>
+            </h6>
+            <span class="align-middle d-sm-inline-block d-none">{{ product?.duration }}</span>
+            <div>
+                    <span *ngFor="let proportion of product?.proportions" class="badge badge-pill badge-primary">
+                      {{proportion.title}}
+                    </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="item-options text-center">
+
+        <button type="button" class="btn btn-light   remove-wishlist" (click)="removeFromCart(product)" rippleEffect>
+            <i data-feather="x" class="align-middle mr-25"></i>
+            <span>Remove</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-cart move-cart" (click)="toggleWishlist(product)" rippleEffect>
+            <i
+                    class="align-middle fa mr-25"
+                    [ngClass]="product.isInWishlist === true ? 'fa-heart text-white' : 'fa-heart-o'"
+            ></i>
+            <span class="text-truncate">Edit</span>
+        </button>
+    </div>
+</div>

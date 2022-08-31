@@ -1,0 +1,240 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<div class="card">
+  <div class="card-body">
+    <form
+      class="form form-vertical"
+      [formGroup]="addThirdPartyForm"
+      (ngSubmit)="add()"
+    >
+      <div class="row">
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.TITLE" | translate }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="title"
+              placeholder="{{ 'ADD.TITLE' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdPartyForm.get('title')!.invalid &&
+              (addThirdPartyForm.get('title')!.dirty ||
+                addThirdPartyForm.get('title')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdPartyForm.get('title')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.LABEL" | translate }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="label"
+              placeholder="{{ 'ADD.LABEL' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdPartyForm.get('label')!.invalid &&
+              (addThirdPartyForm.get('label')!.dirty ||
+                addThirdPartyForm.get('label')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdPartyForm.get('label')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{
+              "ADD.TAXREGISTRATIONNUMBER" | translate
+            }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="taxRegistrationNumber"
+              placeholder="{{ 'ADD.TAXREGISTRATIONNUMBER' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdPartyForm.get('taxRegistrationNumber')!.invalid &&
+              (addThirdPartyForm.get('taxRegistrationNumber')!.dirty ||
+                addThirdPartyForm.get('taxRegistrationNumber')!.touched)
+            "
+          >
+            <small
+              *ngIf="
+                addThirdPartyForm.get('taxRegistrationNumber')?.errors?.required
+              "
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{
+              "ADD.DESCRIPTION" | translate
+            }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="description"
+              placeholder="{{ 'ADD.DESCRIPTION' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdPartyForm.get('description')!.invalid &&
+              (addThirdPartyForm.get('description')!.dirty ||
+                addThirdPartyForm.get('description')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdPartyForm.get('description')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.PHONE" | translate }}</label>
+            <input
+              type="tel"
+              id="phone"
+              class="form-control"
+              formControlName="phone"
+              placeholder="{{ 'ADD.PHONE' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdPartyForm.get('phone')!.invalid &&
+              (addThirdPartyForm.get('phone')!.dirty ||
+                addThirdPartyForm.get('phone')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdPartyForm.get('phone')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+          <div *ngIf="Error.isError" class="col-9 form-text text-danger">
+            {{ Error.errorMessage }}
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.FAX" | translate }}</label>
+            <input
+              type="tel"
+              id="tax"
+              class="form-control"
+              formControlName="fax"
+              placeholder="{{ 'ADD.FAX' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdPartyForm.get('fax')!.invalid &&
+              (addThirdPartyForm.get('fax')!.dirty ||
+                addThirdPartyForm.get('fax')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdPartyForm.get('fax')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+          <div *ngIf="TError.isError" class="col-9 form-text text-danger">
+            {{ TError.errorMessage }}
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.EMAIL" | translate }}</label>
+            <input
+              type="email"
+              id="email-id-vertical"
+              class="form-control"
+              formControlName="email"
+              placeholder="{{ 'ADD.EMAIL' | translate }}"
+              required
+            />
+          </div>
+          <div
+            *ngIf="
+              addThirdPartyForm.get('email')!.invalid &&
+              (addThirdPartyForm.get('email')!.dirty ||
+                addThirdPartyForm.get('email')!.touched)
+            "
+          >
+            <small
+              *ngIf="addThirdPartyForm.get('email')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.COMPANY" | translate}}</label>
+            <select
+              class="custom-select form-control"
+              formControlName="tiersCompanyId"
+              required
+            >
+              <option [value]="0">-Select-</option>
+              <option
+                [value]="el.tiersCompanyId"
+                *ngFor="let el of thirdPartyCompaniesList"
+              >
+                {{ el.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" rippleEffect class="btn btn-primary mr-1">
+            {{ "BUTTONS.SUBMIT" | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+            {{ "BUTTONS.RESET" | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

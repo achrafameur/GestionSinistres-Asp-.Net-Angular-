@@ -1,0 +1,114 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form class="form form-horizontal" #fee="ngForm" (ngSubmit)="update(fee)">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.TITLE' | translate }} </label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                id="first-name-vertical"
+                class="form-control w-60"
+                name="title"
+                placeholder="title"
+                [(ngModel)]="Fee.title"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.SYMBOL' | translate }}</label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                id="first-name-vertical"
+                class="form-control w-60"
+                name="symbol"
+                placeholder="Symbol"
+                [(ngModel)]="Fee.symbol"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.DESCRIPTION' | translate }}</label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                id="first-name-vertical"
+                class="form-control w-60"
+                name="description"
+                placeholder="Description"
+                [(ngModel)]="Fee.description"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.EQUATION' | translate }}</label>
+            </div>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                id="first-name-vertical"
+                class="form-control w-60"
+                name="equation"
+                placeholder="Equation"
+                [(ngModel)]="Fee.equation"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.TYPE' | translate }}</label>
+            </div>
+            <div class="col-sm-9">
+              <select
+                class="custom-select form-control w-60"
+                name="type"
+                [(ngModel)]="Fee.type"
+                required
+              >
+                <option selected>-Select-</option>
+                <option [value]="el.id" *ngFor="let el of typesList">
+                  {{ el.title }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-9 offset-sm-3">
+          <button
+            type="submit"
+            rippleEffect
+            class="btn btn-primary mr-1"
+            [disabled]="!fee.valid"
+          >
+          {{ 'BUTTONS.SUBMIT' | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+          {{ 'BUTTONS.RESET' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

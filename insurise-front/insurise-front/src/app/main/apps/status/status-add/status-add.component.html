@@ -1,0 +1,137 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form
+  class="form form-horizontal"
+  [formGroup]="addStatusForm"
+  (ngSubmit)="add()"
+>
+  <div class="blog-edit-wrapper">
+    <div>
+      <div class="card">
+        <div class="card-body">
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.TITLE" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control w-60"
+                  formControlName="title"
+                  placeholder="title"
+                  required
+                />
+              </div>
+              <div class="col">
+                <div class="form-group row">
+                  <div class="col-sm-3 col-form-label"></div>
+                  <div
+                    class="col-9"
+                    *ngIf="
+                      addStatusForm.get('title')!.invalid &&
+                      (addStatusForm.get('title')!.dirty ||
+                        addStatusForm.get('title')!.touched)
+                    "
+                  >
+                    <small
+                      *ngIf="addStatusForm.get('title')?.errors?.required"
+                      class="form-text text-danger"
+                    >
+                      This Field is required !!
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.SYMBOL" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control w-60"
+                  formControlName="symbol"
+                  placeholder="Symbol"
+                  required
+                />
+              </div>
+              <div class="col">
+                <div class="form-group row">
+                  <div class="col-sm-3 col-form-label"></div>
+                  <div
+                    class="col-9"
+                    *ngIf="
+                      addStatusForm.get('symbol')!.invalid &&
+                      (addStatusForm.get('symbol')!.dirty ||
+                        addStatusForm.get('symbol')!.touched)
+                    "
+                  >
+                    <small
+                      *ngIf="addStatusForm.get('symbol')?.errors?.required"
+                      class="form-text text-danger"
+                    >
+                      This Field is required !!
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ "ADD.ITEM" | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <select
+                  class="custom-select form-control w-60"
+                  formControlName="itemId"
+                  placeholder="Item Id"
+                  required
+                >
+                  <option [value]="0">-Select-</option>
+                  <option [value]="el.id" *ngFor="let el of itemList">
+                    {{ el.title }}
+                  </option>
+                </select>
+              </div>
+              <div class="col">
+                <div class="form-group row">
+                  <div class="col-sm-3 col-form-label"></div>
+                  <div
+                    class="col-9"
+                    *ngIf="
+                      addStatusForm.get('itemId')!.invalid &&
+                      (addStatusForm.get('itemId')!.dirty ||
+                        addStatusForm.get('itemId')!.touched)
+                    "
+                  >
+                    <small
+                      *ngIf="addStatusForm.get('itemId')?.errors?.required"
+                      class="form-text text-danger"
+                    >
+                      This Field is required !!
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9 offset-sm-3">
+            <button type="submit" rippleEffect class="btn btn-primary mr-1">
+              {{ "BUTTONS.SUBMIT" | translate }}
+            </button>
+            <button type="reset" rippleEffect class="btn btn-outline-danger">
+              {{ "BUTTONS.RESET" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

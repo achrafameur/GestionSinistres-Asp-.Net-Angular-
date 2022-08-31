@@ -1,0 +1,45 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+      <!-- content-header component -->
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form class="form form-vertical"
+#nature ="ngForm"  (ngSubmit)="onUpdate(nature)"
+>
+ <div class="row">
+   <div class="col-12">
+     <div class="form-group">
+       <label for="first-name-vertical">{{'ADD.TITLE'|translate}}</label>
+       <input
+         type="text"
+         id="first-name-vertical"
+         class="form-control"
+         name="title"
+         [(ngModel)]="Nature.title"
+         required
+        
+       />
+     </div>
+   </div>
+   <div class="col-6">
+    <div class="custom-control custom-checkbox m-2" >
+        <input type="checkbox" class="custom-control-input" name="isList" id="checkbox-1" [(ngModel)]="Nature.isList"   >
+        <label class="custom-control-label" for="checkbox-1">{{'ADD.ISLIST'|translate}}</label>
+      </div>
+      <hr>
+    </div>
+   <div class="col-12">
+     <button 
+     
+       type="submit"
+       rippleEffect
+       class="btn btn-primary mr-1"
+       [disabled]="!nature.valid"
+       
+     >
+     {{'ADD.BTNSUBMIT'|translate}}
+     </button>
+   </div>
+ </div>
+</form>
+
+

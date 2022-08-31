@@ -1,0 +1,276 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<br />
+<form
+  class="form form-horizontal w-70"
+  [formGroup]="addSinisterBinderForm"
+  (ngSubmit)="declare()"
+>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ "ADD.SINISTERDATE" | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="date"
+                id="sinisterDate"
+                class="form-control"
+                formControlName="sinisterDate"
+                placeholder="{{ 'ADD.SINISTERDATE' | translate }}"
+                required
+              />
+            </div>
+            <div class="col-sm-3"
+                *ngIf="
+                addSinisterBinderForm.get('sinisterDate')!.invalid &&
+                  (addSinisterBinderForm.get('sinisterDate')!.dirty ||
+                  addSinisterBinderForm.get('sinisterDate')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addSinisterBinderForm.get('sinisterDate')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This field is required.
+                </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.SINISTERTIME' | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="time"
+                id="email-id"
+                class="form-control"
+                formControlName="sinisterTime"
+                placeholder="{{ 'ADD.SINISTERTIME' | translate }}"
+                required
+              />
+            </div>
+            <div class="col-sm-3"
+                *ngIf="
+                addSinisterBinderForm.get('sinisterTime')!.invalid &&
+                  (addSinisterBinderForm.get('sinisterTime')!.dirty ||
+                  addSinisterBinderForm.get('sinisterTime')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addSinisterBinderForm.get('sinisterTime')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This field is required.
+                </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.SINISTERPLACE' | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                id="contact-info"
+                class="form-control"
+                formControlName="sinisterPlace"
+                placeholder="{{ 'ADD.SINISTERPLACE' | translate }}"
+                required
+              />
+            </div>
+            <div class="col-sm-3"
+                *ngIf="
+                addSinisterBinderForm.get('sinisterPlace')!.invalid &&
+                  (addSinisterBinderForm.get('sinisterPlace')!.dirty ||
+                  addSinisterBinderForm.get('sinisterPlace')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addSinisterBinderForm.get('sinisterPlace')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This field is required.
+                </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.POLICYNUMBER' | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="policyNumber"
+                placeholder="{{ 'ADD.POLICYNUMBER' | translate }}"
+                required
+              />
+            </div>
+            <div class="col-sm-3"
+                *ngIf="
+                addSinisterBinderForm.get('policyNumber')!.invalid &&
+                  (addSinisterBinderForm.get('policyNumber')!.dirty ||
+                  addSinisterBinderForm.get('policyNumber')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addSinisterBinderForm.get('policyNumber')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This field is required.
+                </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.INSUREDNAME' | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="insuredName"
+                placeholder="{{ 'ADD.INSUREDNAME' | translate }}"
+                required
+              />
+            </div>
+            <div class="col-sm-3"
+                *ngIf="
+                addSinisterBinderForm.get('insuredName')!.invalid &&
+                  (addSinisterBinderForm.get('insuredName')!.dirty ||
+                  addSinisterBinderForm.get('insuredName')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addSinisterBinderForm.get('insuredName')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This field is required.
+                </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.INSUREDOBJECT' | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="insuredObject"
+                placeholder="{{ 'ADD.INSUREDOBJECT' | translate }}"
+                required
+              />
+            </div>
+            <div class="col-sm-3"
+                *ngIf="
+                addSinisterBinderForm.get('insuredObject')!.invalid &&
+                  (addSinisterBinderForm.get('insuredObject')!.dirty ||
+                  addSinisterBinderForm.get('insuredObject')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addSinisterBinderForm.get('insuredObject')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This field is required.
+                </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.DESCRIPTION' | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="description"
+                placeholder="{{ 'ADD.DESCRIPTION' | translate }}"
+                required
+              />
+            </div>
+            <div class="col-sm-3"
+                *ngIf="
+                addSinisterBinderForm.get('description')!.invalid &&
+                  (addSinisterBinderForm.get('description')!.dirty ||
+                  addSinisterBinderForm.get('description')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addSinisterBinderForm.get('description')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This field is required.
+                </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group row">
+            <div class="col-sm-3 col-form-label">
+              <label>{{ 'ADD.RECLAMATIONDATE' | translate }}</label>
+            </div>
+            <div class="col-sm-6">
+              <input
+                type="date"
+                id="reclamationDate"
+                class="form-control"
+                formControlName="reclamationDate"
+                placeholder="{{ 'ADD.RECLAMATIONDATE' | translate }}"
+                required
+              />
+            </div>
+            <div class="col-sm-3"
+                *ngIf="
+                addSinisterBinderForm.get('reclamationDate')!.invalid &&
+                  (addSinisterBinderForm.get('reclamationDate')!.dirty ||
+                  addSinisterBinderForm.get('reclamationDate')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addSinisterBinderForm.get('reclamationDate')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This field is required.
+                </small>
+            </div>
+            <div *ngIf="error.isError" class="col-sm-3 form-text text-danger">
+              {{ 'TITLES.DATEERROR' | translate }}
+            </div>
+            <!-- <div *ngIf="validerror.isError" class="col-sm-3 form-text text-danger">
+              {{ 'TITLES.ERROR' | translate }}
+            </div> -->
+          </div>
+        </div>
+        <div class="col-sm-9 offset-sm-3">
+          <button
+            type="submit"
+            rippleEffect
+            class="btn btn-primary mr-1"
+          >
+          {{ 'BUTTONS.SUBMIT' | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+          {{ 'BUTTONS.RESET' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

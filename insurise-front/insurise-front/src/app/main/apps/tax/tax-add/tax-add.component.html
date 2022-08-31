@@ -1,0 +1,135 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form class="form form-vertical" [formGroup]="addTaxForm" (ngSubmit)="add()">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.TITLE' | translate }}</label>
+            <input
+              type="text"
+              id="first-name-vertical"
+              class="form-control"
+              formControlName="title"
+              placeholder="title"
+              required
+            />
+          </div>
+          <div
+            class="col-9"
+            *ngIf="
+              addTaxForm.get('title')!.invalid &&
+              (addTaxForm.get('title')!.dirty ||
+              addTaxForm.get('title')!.touched)
+            "
+          >
+            <small
+              *ngIf="addTaxForm.get('title')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.DESCRIPTION' | translate }}</label>
+            <input
+              type="text"
+              id="first-name-vertical"
+              class="form-control"
+              formControlName="description"
+              placeholder="Description"
+              required
+            />
+          </div>
+          <div
+            class="col-9"
+            *ngIf="
+              addTaxForm.get('description')!.invalid &&
+              (addTaxForm.get('description')!.dirty ||
+              addTaxForm.get('description')!.touched)
+            "
+          >
+            <small
+              *ngIf="addTaxForm.get('description')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.COEFFICIENT' | translate }}</label>
+            <input
+              type="number"
+              id="first-name-vertical"
+              class="form-control"
+              formControlName="coefficient"
+              placeholder="Coefficient"
+              required
+            />
+          </div>
+          <div
+            class="col-9"
+            *ngIf="
+              addTaxForm.get('coefficient')!.invalid &&
+              (addTaxForm.get('coefficient')!.dirty ||
+              addTaxForm.get('coefficient')!.touched)
+            "
+          >
+            <small
+              *ngIf="addTaxForm.get('coefficient')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.CONSTANT' | translate }}</label>
+            <input
+              type="number"
+              id="first-name-vertical"
+              class="form-control"
+              formControlName="constant"
+              placeholder="Constant"
+              required
+            />
+          </div>
+          <div
+            class="col-9"
+            *ngIf="
+              addTaxForm.get('constant')!.invalid &&
+              (addTaxForm.get('constant')!.dirty ||
+              addTaxForm.get('constant')!.touched)
+            "
+          >
+            <small
+              *ngIf="addTaxForm.get('constant')?.errors?.required"
+              class="form-text text-danger"
+            >
+              This Field is required !!
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <button
+          type="submit"
+          rippleEffect
+          class="btn btn-primary mr-1"
+        >
+        {{ 'BUTTONS.SUBMIT' | translate }}
+        </button>
+        <button type="reset" rippleEffect class="btn btn-outline-danger">
+        {{ 'BUTTONS.RESET' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

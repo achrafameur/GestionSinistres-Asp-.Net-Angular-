@@ -1,0 +1,236 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <!-- Blog Edit -->
+        <div class="blog-edit-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <form (ngSubmit)="save()" [formGroup]="editForm" class="mt-2">
+                                <div class="row">
+                                    <div [hidden]="true" class="form-group">
+                                        <label class="form-control-label" for="field_id">ID</label>
+                                        <input
+                                                [readonly]="true"
+                                                class="form-control"
+                                                data-cy="productId"
+                                                formControlName="productId"
+                                                id="field_id"
+                                                name="productId"
+                                                type="number"/>
+                                    </div>
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="field_name">{{ 'ADD.TITLE' | translate }} </label>
+
+                                            <input class="form-control"
+                                                   data-cy="title"
+                                                   formControlName="title"
+                                                   id="field_name"
+                                                   name="title"
+                                                   required
+                                                   type="text"/>
+                                            <div *ngIf="
+                                                      editForm.get('title')!.invalid &&
+                                                      (editForm.get('title')!.dirty || editForm.get('title')!.touched)">
+
+                                                <small *ngIf="editForm.get('title')?.errors?.required"
+                                                       class="form-text text-danger">
+                                                    This field is required.
+                                                </small>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="productDesc">{{ 'ADD.DESCRIPTION' | translate }}</label>
+                                            <input class="form-control"
+                                                   data-cy="description"
+                                                   formControlName="description"
+                                                   id="productDesc"
+                                                   name="description"
+                                                   type="text"
+                                                   
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="startDate">{{ 'ADD.STARTDATE' | translate }}</label>
+                                            <input [flatpickr]="basicDateOptions"
+                                                   class="form-control"
+                                                   data-cy="startDate"
+                                                   name="basicDate"
+                                                   formControlName="startDate"
+                                                   id="startDate"/>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="expirationDate">{{ 'ADD.EXPIRATIONDATE' | translate }}</label>
+<!--                                            <ng2-flatpickr-->
+<!--                                                    [config]="basicDateFinOptions" data-cy="expirationDate"-->
+<!--                                                    formControlName="expirationDate"-->
+<!--                                                    id="expirationDate">-->
+<!--                                            </ng2-flatpickr>-->
+                                            <input [flatpickr]="basicDateFinOptions"
+                                                   class="form-control"
+                                                   formControlName="expirationDate"
+                                                   id="expirationDate"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label for="selectCertificate">{{ 'ADD.CERTIFICATE' | translate }}</label>
+
+                                            <ng-select
+                                                    [closeOnSelect]="true"
+                                                    [items]="selectCertificate"
+                                                    [multiple]="false"
+                                                    [searchable]="true"
+                                                    bindLabel="name"
+                                                    data-cy="certificateId"
+                                                    formControlName="certificateId"
+                                                    id="selectCertificate"
+                                                    placeholder="Select Attestation"
+                                            >
+                                            </ng-select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 col-12 mb-1">
+                                        <div class="form-group">
+                                            <label>{{ 'ADD.BRANCH' | translate }} </label>
+
+                                            <select class="form-control" formControlName="branchId">
+
+                                                <option *ngFor="let c of selectBranches" [ngValue]="c.branchId">
+                                                    {{c.title}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group mb-2">
+                                            <label for="productCode">{{ 'ADD.CODE' | translate }} </label>
+                                            <input
+                                                    class="form-control"
+                                                    data-cy="code"
+                                                    formControlName="code"
+                                                    id="productCode"
+                                                    name="code"
+                                                    type="text"
+                                            />
+                                            <div   *ngIf=" editForm.get('code')!.invalid &&
+                                          (editForm.get('code')!.dirty || editForm.get('code')!.touched)">
+                                            <small
+                                                    class="form-text text-danger"
+                                                    *ngIf="editForm.get('code')?.errors?.required"
+                                            >
+                                                This field is required.
+                                            </small>
+
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group mb-2">
+                                            <label for="field_defaultDiscount">{{ 'ADD.DEFAULTDISCOUNT' | translate }}</label>
+                                            <input
+                                                    class="form-control"
+                                                    data-cy="defaultDiscount"
+                                                    formControlName="defaultDiscount"
+                                                    id="field_defaultDiscount"
+                                                    name="defaultDiscount"
+                                                    type="number"
+                                            />
+                                            <div *ngIf="
+                                            editForm.get('defaultDiscount')!.invalid &&
+                                            (editForm.get('defaultDiscount')!.dirty || editForm.get('defaultDiscount')!.touched)">
+
+                                                <small *ngIf="editForm.get('defaultDiscount')?.errors?.required"
+                                                       class="form-text text-danger">
+                                                    This field is required.
+                                                </small>
+
+                                                <small [hidden]="!editForm.get('defaultDiscount')?.errors?.number"
+                                                       class="form-text text-danger">
+                                                    This field should be a number.
+                                                </small>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <div class="border rounded p-2">
+                                            <h4 class="mb-1">{{ 'ADD.IMAGE' | translate }}  </h4>
+                                            <div class="media flex-column flex-md-row">
+                                                <img
+                                                        [src]="ProductImage"
+                                                        alt="Product Image"
+                                                        class="rounded mr-2 mb-1 mb-md-0"
+                                                        height="110"
+                                                        id="Product-image"
+                                                        width="170"
+                                                />
+                                                <div class="media-body">
+                                                    <small class="text-muted">Required image resolution 800x400, image
+                                                        size 10mb.</small>
+                                                    <p class="my-50">
+                                                        <a href="javascript:void(0);" id="Product-image-text"
+                                                        >C:\fakepath\{{ fileName === undefined ? avatar : fileName }}</a
+                                                        >
+                                                    </p>
+                                                    <div class="d-inline-block">
+                                                        <div class="form-group mb-0">
+                                                            <div class="custom-file">
+                                                                <input
+                                                                        (change)="uploadImage($event)"
+                                                                        accept="image/*"
+                                                                        class="custom-file-input"
+                                                                        id="blogCustomFile"
+                                                                        type="file"
+                                                                />
+                                                                <label class="custom-file-label" for="blogCustomFile">Choose
+                                                                    file</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-50">
+                                        <button class="btn btn-primary mr-1" data-cy="entityCreateSaveButton"
+                                                id="save-entity"
+                                                rippleEffect      [disabled]="editForm.invalid || isSaving"
+                                                type="submit">
+                                            {{ 'ADD.BTNUPDATE' | translate }}</button>
+                                        <button (click)="previousState()"
+                                                class="btn btn-outline-secondary"
+                                                data-cy="entityCreateCancelButton"
+                                                id="cancel-save" rippleEffect type="reset">Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--/ Form -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ Blog Edit -->
+    </div>
+</div>

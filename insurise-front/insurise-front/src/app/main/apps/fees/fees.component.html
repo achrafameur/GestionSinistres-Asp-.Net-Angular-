@@ -1,0 +1,151 @@
+<section id="ngx-datatable-multi-purpose">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 mb-50">
+          <button class="btn btn-primary ml-1" rippleEffect>
+            <i data-feather="plus" class="mr-0 mr-sm-1"></i
+            ><span routerLink="/apps/fees/add" class="d-none d-sm-inline-block"
+              >{{ 'BUTTONS.ADDNEWBUTTON' | translate }}</span
+            >
+          </button>
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="d-flex justify-content-between align-items-center m-1">
+            <label class="d-flex align-items-center"
+              >{{ 'BUTTONS.SHOW' | translate }}
+              <select class="form-control mx-25" [(ngModel)]="selectedOption">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              {{ 'BUTTONS.ENTRIES' | translate }}</label
+            >
+          </div>
+        </div>
+        <div class="col-md-6 col-12 d-flex justify-content-md-end">
+          <div
+            class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0"
+          >
+            <label class="d-flex align-items-center"
+              >{{ 'BUTTONS.SEARCH' | translate }}<input
+                type="search"
+                placeholder="{{ 'BUTTONS.SEARCH' | translate }}"
+                class="form-control ml-25"
+                (keyup)="filterUpdate($event)"
+            /></label>
+          </div>
+        </div>
+      </div>
+      <ngx-datatable
+        [rows]="kitchenSinkRows"
+        [rowHeight]="58"
+        class="bootstrap core-bootstrap"
+        [limit]="10"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="40"
+        [footerHeight]="50"
+        [scrollbarH]="true"
+        [selectionType]="SelectionType.checkbox"
+      >
+        <!-- <ngx-datatable-column name="Id" prop="feesId" [width]="280"></ngx-datatable-column> -->
+        <ngx-datatable-column
+          name="{{ 'HEADER.TITLE' | translate }}"
+          prop="title"
+          [width]="120"
+        ></ngx-datatable-column>
+        <ngx-datatable-column
+          name="{{ 'HEADER.SYMBOL' | translate }}"
+          prop="symbol"
+          [width]="120"
+        ></ngx-datatable-column>
+        <!-- <ngx-datatable-column
+          name="{{ 'HEADER.EQUATION' | translate }}"
+          prop="equation"
+          [width]="120"
+        ></ngx-datatable-column> -->
+        <ngx-datatable-column
+          name="{{ 'HEADER.DESCRIPTION' | translate }}"
+          prop="description"
+          [width]="200"
+        ></ngx-datatable-column>
+        <!-- <ngx-datatable-column
+          name="{{ 'HEADER.TYPE' | translate }}"
+          prop="type"
+          [width]="200"
+        ></ngx-datatable-column> -->
+        <!-- <ngx-datatable-column name="Creation Date " prop="created_date" [width]="220"></ngx-datatable-column> -->
+
+        <ngx-datatable-column name="Actions" prop="feesId" [width]="120">
+          <ng-template
+            ngx-datatable-cell-template
+            let-rowIndex="rowIndex"
+            let-value="value"
+            let-row="row"
+          >
+            <div class="d-flex align-items-center">
+              <a
+                ngbDropdownItem
+                class="d-flex align-items-center ml-1"
+                routerLink="/apps/fees/update/{{ value }}"
+              >
+                <i data-feather="edit" class="text-primary cursor-pointer">
+                  EDIT
+                </i>
+              </a>
+              <a
+                ngbDropdownItem
+                class="d-flex align-items-center ml-1"
+                (click)="modalOpenForm(modalForm)"
+              >
+                <i data-feather="trash-2" class="mr-50 text-danger"> DELETE </i>
+              </a>
+              <!-- Delete Modal -->
+              <div class="login-form">
+                <ng-template #modalForm let-modal>
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel1">
+                      Delete Fee
+                    </h4>
+                    <button
+                      type="button"
+                      class="close"
+                      (click)="modal.dismiss('Cross click')"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" tabindex="0" ngbAutofocus>
+                    <h4>Are you Sure you want to delete this fee ?</h4>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="modal.dismiss('Cross click')"
+                      rippleEffect
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="modal.close(delete(value))"
+                      rippleEffect
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </ng-template>
+              </div>
+              <!-- / Modal -->
+            </div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </div>
+</section>

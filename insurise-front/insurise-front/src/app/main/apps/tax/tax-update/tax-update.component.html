@@ -1,0 +1,80 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form class="form form-vertical" #tax="ngForm" (ngSubmit)="update(tax)">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.TITLE' | translate }}</label>
+            <input
+              type="text"
+              id="first-name-vertical"
+              class="form-control"
+              name="title"
+              placeholder="title"
+              [(ngModel)]="Tax.title"
+              required
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.DESCRIPTION' | translate }}</label>
+            <input
+              type="text"
+              id="first-name-vertical"
+              class="form-control"
+              name="description"
+              placeholder="Description"
+              [(ngModel)]="Tax.description"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.COEFFICIENT' | translate }}</label>
+            <input
+              type="number"
+              id="first-name-vertical"
+              class="form-control"
+              name="coefficient"
+              placeholder="Coefficient"
+              [(ngModel)]="Tax.coefficient"
+              required
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.CONSTANT' | translate }}</label>
+            <input
+              type="number"
+              id="first-name-vertical"
+              class="form-control"
+              name="constant"
+              placeholder="Constant"
+              [(ngModel)]="Tax.constant"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <button
+          type="submit"
+          [disabled]="!tax.valid"
+          rippleEffect
+          class="btn btn-primary mr-1"
+        >
+        {{ 'BUTTONS.SUBMIT' | translate }}
+        </button>
+        <button type="reset" rippleEffect class="btn btn-outline-danger">
+        {{ 'BUTTONS.RESET' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

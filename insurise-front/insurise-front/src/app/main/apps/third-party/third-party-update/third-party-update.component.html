@@ -1,0 +1,146 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<div class="card">
+  <div class="card-body">
+    <form class="form form-vertical" #third="ngForm" (ngSubmit)="update(third)">
+      <div class="row">
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.TITLE" | translate }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              name="title"
+              placeholder="Title"
+              [(ngModel)]="ThirdParty.title"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.LABEL" | translate }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              name="label"
+              placeholder="Label"
+              [(ngModel)]="ThirdParty.label"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12 mb-1">
+          <div class="form-group">
+            <label for="email-id-vertical">{{
+              "ADD.TAXREGISTRATIONNUMBER" | translate
+            }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              name="taxRegistrationNumber"
+              placeholder="Matricule Fiscale"
+              [(ngModel)]="ThirdParty.taxRegistrationNumber"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{
+              "ADD.DESCRIPTION" | translate
+            }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              name="description"
+              placeholder="Description"
+              [(ngModel)]="ThirdParty.description"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.PHONE" | translate }}</label>
+            <input
+              type="tel"
+              id="email-id-vertical"
+              class="form-control"
+              name="phone"
+              placeholder="Phone"
+              [(ngModel)]="ThirdParty.phone"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.FAX" | translate }}</label>
+            <input
+              type="tel"
+              id="email-id-vertical"
+              class="form-control"
+              name="fax"
+              placeholder="Fax"
+              [(ngModel)]="ThirdParty.fax"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ "ADD.EMAIL" | translate }}</label>
+            <input
+              type="email"
+              id="email-id-vertical"
+              class="form-control"
+              name="email"
+              placeholder="Email"
+              [(ngModel)]="ThirdParty.email"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{
+              "ADD.COMPANY" | translate
+            }}</label>
+            <select
+              class="custom-select form-control"
+              name="tiersCompanyId"
+              [(ngModel)]="ThirdParty.tiersCompanyId"
+              required
+            >
+              <option selected>-Select-</option>
+              <option
+                [value]="el.tiersCompanyId"
+                *ngFor="let el of thirdPartyCompaniesList"
+              >
+                {{ el.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button
+            type="submit"
+            [disabled]="!third.valid"
+            rippleEffect
+            class="btn btn-primary mr-1"
+          >
+            {{ "BUTTONS.SUBMIT" | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+            {{ "BUTTONS.RESET" | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

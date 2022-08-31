@@ -1,0 +1,242 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form  class="form form-vertical"
+ng-controller="CheckBoxController"
+(ngSubmit)="onSubmit(featureItemsForm)">
+    <form
+      class="form form-vertical"
+      ng-controller="CheckBoxController"
+      [formGroup]="addFeatureForm"
+     
+    >
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.TITLE' | translate }}</label>
+            <input
+              type="text"
+              id="first-name-vertical"
+              class="form-control"
+              name="form-label"
+              placeholder="Title"
+              formControlName="title"
+            />
+            <div *ngIf="
+            addFeatureForm.get('title')!.invalid &&
+                      (addFeatureForm.get('title')!.dirty || addFeatureForm.get('title')!.touched)">
+
+                <small *ngIf="addFeatureForm.get('title')?.errors?.required"
+                       class="form-text text-danger">
+                   {{'BUTTON.REQUIRED'|translate}}
+                </small>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ 'ADD.DESCRIPTION' | translate }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              name="form-description"
+              placeholder="Description"
+              formControlName="description"
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ 'ADD.SYMBOL' | translate }}</label>
+            <input
+              type="text"
+              id="email-id-vertical"
+              class="form-control"
+              name="form-description"
+              placeholder="Symbol"
+              formControlName="symbol"
+            />
+          </div>
+        </div>
+        <div class="col-6"
+        *ngIf="(this.addFeatureForm.get('minimum').value==0)&&(this.addFeatureForm.get('maximum').value==0)" >
+          <div class="form-group">
+            <label for="email-id-vertical">{{ 'ADD.FIXED' | translate }}</label>
+            <input
+              type="number"
+              id="email-id-vertical"
+              class="form-control"
+              name="form-description"
+              placeholder="fixed"
+              formControlName="fixed"
+              (change)="change1()"
+            />
+          </div>
+        </div>
+        <div class="d-flex col-12">
+        <div class="col-6"
+        *ngIf="this.addFeatureForm.get('fixed').value==0" >
+          <div class="form-group">
+            <label for="email-id-vertical">{{ 'ADD.MINIMUM' | translate }}</label>
+            <input
+              type="number"
+              id="email-id-vertical"
+              class="form-control"
+              name="form-description"
+              placeholder="minimum"
+              formControlName="minimum"
+              (change)="change2()"
+            />
+          </div>
+        </div>
+        <div class="col-6"
+        *ngIf="this.addFeatureForm.get('fixed').value==0" >
+          <div class="form-group">
+            <label for="email-id-vertical">{{ 'ADD.MAXIMUM' | translate }}</label>
+            <input
+              type="number"
+              id="email-id-vertical"
+              class="form-control"
+              name="form-description"
+              placeholder="maximum"
+              formControlName="maximum"
+              (change)="change2()"
+            />
+          </div>
+        </div>
+      </div>
+        <div class="d-flex col-12">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="nature">{{ 'ADD.NATURE' | translate }}</label>
+            <select
+              class="custom-select"
+              name="Id"
+              Type="number"
+              ngModel
+              formControlName="natureId"
+             
+            >
+              <option [value]="el.id" *ngFor="let el of natureList">
+                {{ el.title }}
+              </option>
+            </select>
+          </div>
+        </div>
+       
+
+        <div class="col-6"
+        *ngIf="getNatureValue(this.addFeatureForm.get('natureId').value)==true" 
+        >
+          <div class="form-group">
+            <label for="chain">{{ 'ADD.LIST' | translate }}</label>
+            <select
+              class="custom-select"
+              name="chainId"
+              Type="number"
+              ngModel
+              formControlName="chainId"
+              
+            >
+              <option
+                selected
+                [value]="el.chainId"
+                *ngFor="let el of chainList"
+              >
+                {{ el.title }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+        <div class="d-flex col-12">
+        <div class="col-6">
+          <div class="custom-control custom-checkbox m-2">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="alterable"
+              id="checkbox-1"
+              [value]=""
+              formControlName="alterable"
+             
+            />
+            <label class="custom-control-label" for="checkbox-1"
+              >{{ 'ADD.ALTERABLE' | translate }}</label
+            >
+          </div>
+          <hr />
+        </div>
+        <div class="col-6">
+          <div class="custom-control custom-checkbox m-2">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              name="isPrincipal"
+              id="checkbox-2"
+              formControlName="isPrincipal"
+            />
+            <label class="custom-control-label" for="checkbox-2"
+              >{{ 'ADD.ISPRINCIPALE' | translate }}</label
+            >
+          </div>
+          <hr />
+        </div>
+        </div>
+      </div>
+    </form>
+    <form class="form form-vertical" #featureItemsForm="ngForm"
+    >
+      <div class="col-12 m-2">
+        <h4 for="email-id-vertical">{{ 'ADD.ATTACH' | translate }}</h4>
+      </div>
+      <div class="col-5">
+        <div
+          class="custom-control custom-checkbox m-2"
+          *ngFor="let el of itemList"
+        >
+          <input
+          id="FeatureItemId"
+          name="FeatureItemId"
+            type="checkbox"
+            [(ngModel)]="el.isChecked"
+            (change)="onChange()"
+          >
+
+          {{ el.title }}
+        </div>
+      </div>
+    </form>
+         
+    <div class="col-12">
+      <button
+        id="addChain"
+        type="submit"
+        rippleEffect
+        class="btn btn-primary mr-1"
+        [disabled]="!featureItemsForm.valid"
+      >
+        {{'ADD.BTNSUBMIT' | translate}}
+      </button>
+    </div>
+
+  </form>
+    <!-- <form class="form form-vertical" ng-controller="CheckBoxController"
+[formGroup]="addFeatureForm"  #featureItemsForm ="ngForm"  (ngSubmit)="onSubmit(featureItemsForm)"
+>
+<div class="col-5">
+  <div class="custom-control custom-checkbox m-2" *ngFor="let article of articleList">
+    <input type="checkbox" [value]="articleList.title" class="custom-control-input" [name]="article.id" [id]="article.id"  >
+    <label class="custom-control-label" [for]="article.id" >
+    {{article.title}}
+  </label>
+</div>
+
+
+  </div>
+</form> -->
+  </div>
+</div>

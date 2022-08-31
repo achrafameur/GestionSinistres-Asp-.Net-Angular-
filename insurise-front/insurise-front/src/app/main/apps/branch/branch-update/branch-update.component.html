@@ -1,0 +1,85 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form class="form form-horizontal" #branch="ngForm" (ngSubmit)="update(branch)">
+  <div class="blog-edit-wrapper">
+    <div>
+      <div class="card">
+        <div class="card-body">
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ 'ADD.TITLE' | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control w-60"
+                  name="form-label"
+                  placeholder="Title"
+                  name="title"
+                  [(ngModel)]="BRANCH.title"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ 'ADD.DESCRIPTION' | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  id="email-id-vertical"
+                  class="form-control w-60"
+                  name="form-description"
+                  placeholder="Description"
+                  name="description"
+                  [(ngModel)]="BRANCH.description"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ 'ADD.PARENTBRANCH' | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <select
+                  class="custom-select w-60"
+                  id="parentBranch"
+                  [(ngModel)]="BRANCH.parentId"
+                  name="parentId"
+                >
+                  <option selected>-Select-</option>
+                  <option
+                    [value]="el.branchId"
+                    *ngFor="let el of parentBranches"
+                  >
+                    {{ el.title }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9 offset-sm-3">
+            <button
+              type="submit"
+              rippleEffect
+              class="btn btn-primary mr-1"
+              [disabled]="!branch.valid"
+            >
+            {{ 'BUTTONS.SUBMIT' | translate }}
+            </button>
+            <button type="reset" rippleEffect class="btn btn-outline-danger">
+              {{ 'BUTTONS.RESET' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

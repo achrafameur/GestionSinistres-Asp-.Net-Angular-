@@ -1,0 +1,135 @@
+<h4>Add Sinister Nature :</h4>
+<form class="form form-vertical" #sinNat="ngForm" (ngSubmit)="add(sinNat)">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.TITLE' | translate }}</label>
+            <input
+              type="text"
+              id="first-name-vertical"
+              class="form-control"
+              name="title"
+              placeholder="{{ 'ADD.TITLE' | translate }}"
+              ngModel
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.CODE' | translate }}</label>
+            <input
+              type="text"
+              id="first-name-vertical"
+              class="form-control"
+              name="code"
+              placeholder="Code"
+              ngModel
+              required
+            />
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ 'ADD.BRANCH' | translate }}</label>
+            <select
+              class="custom-select form-control"
+              name="branchId"
+              ngModel
+              required
+            >
+              <option selected>-Select-</option>
+              <option [value]="el.branchId" *ngFor="let el of branchList">
+                {{ el.title }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12"><h5>Select Menus :</h5></div>
+        <div class="col-xl-4 col-md-6 col-12"></div>
+        <div class="col-xl-4 col-md-6 col-12"></div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="idaEnabled" />IDA Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input
+              type="checkbox"
+              ngModel
+              name="transactionEnabled"
+            />Transaction Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="thirdPartyEnabled" />Third
+            Party Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="victimEnabled" />victim Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="respEnabled" />Resp Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="respAutoEnabled" />Resp Auto
+            Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="affaireEnabled" />Affaire
+            Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="expertiseEnabled" />Expertise
+            Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="evalInterneEnabled" />Eval
+            Interne Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="evalInterneCorpEnabled" />Eval
+            Interne Corp Enabled
+          </div>
+        </div>
+        <div class="col-xl-4 col-md-6 col-12">
+          <div class="form-group">
+            <input type="checkbox" ngModel name="regExpertEnabled" />Reg Expert
+            Enabled
+          </div>
+        </div>
+        <div class="col-12">
+          <button
+            type="submit"
+            [disabled]="!sinNat.valid"
+            rippleEffect
+            class="btn btn-primary mr-1"
+          >
+          {{ 'BUTTONS.SUBMIT' | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+          {{ 'BUTTONS.RESET' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

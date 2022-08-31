@@ -1,0 +1,65 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+      <!-- content-header component -->
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+<form class="form form-vertical"
+[formGroup]="addNatureForm"  (ngSubmit)="onSubmit()"
+>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="first-name-vertical">{{ 'ADD.TITLE' | translate }}</label>
+        <input
+          type="text"
+          id="first-name-vertical"
+          class="form-control"
+          name="form-label"
+          placeholder="{{ 'ADD.TITLE' | translate }}" 
+          
+          formControlName="title"
+        />
+        <div *ngIf="
+        addNatureForm.get('title')!.invalid &&
+                  (addNatureForm.get('title')!.dirty || addNatureForm.get('title')!.touched)">
+
+            <small *ngIf="addNatureForm.get('title')?.errors?.required"
+                   class="form-text text-danger">
+               {{'BUTTON.REQUIRED'|translate}}
+            </small>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="custom-control custom-checkbox m-2">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          name="isList"
+          id="checkbox-1"
+          
+          formControlName="isList"
+         
+        />
+        
+        <label class="custom-control-label" for="checkbox-1"
+          >{{ 'ADD.ISLIST' | translate }}</label
+        >
+      </div>
+      
+    </div>
+    <div class="col-12">
+      <button 
+        id="addNature"
+        type="submit"
+        rippleEffect
+        class="btn btn-primary mr-1"
+        
+      >
+      {{'ADD.BTNSUBMIT' | translate}}
+      </button>
+    </div>
+  </div>
+</form>
+
+ 

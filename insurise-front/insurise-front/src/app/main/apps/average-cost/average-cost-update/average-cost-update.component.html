@@ -1,0 +1,89 @@
+<section id="ngx-datatable-multi-purpose">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+<div class="card">
+  <div class="card-body">
+    <form
+      class="form form-vertical"
+      #avgcost="ngForm"
+      (ngSubmit)="update(avgcost)"
+    >
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="first-name-vertical">{{ "ADD.AVERAGECOST" | translate }}</label>
+            <input
+              type="number"
+              id="first-name-vertical"
+              class="form-control"
+              placeholder="Average Cost"
+              name="averageCost"
+              [(ngModel)]="AVGCost.averageCost"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ 'ADD.STARTDATE' | translate }}</label>
+            <input
+              type="date"
+              class="form-control"
+              name="form-description"
+              name="startDate"
+              [(ngModel)]="sDate"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ 'ADD.ENDDATE' | translate }}</label>
+            <input
+              type="date"
+              class="form-control"
+              name="form-description"
+              name="endDate"
+              [(ngModel)]="eDate"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="email-id-vertical">{{ 'ADD.SINISTERNATURE' | translate }}</label>
+            <select
+              class="custom-select form-control"
+              name="sinisterNatureId"
+              placeholder="Item Id"
+              [(ngModel)]="AVGCost.sinisterNatureId"
+              required
+            >
+              <option selected>-Select-</option>
+              <option
+                [value]="el.sinisterNatureId"
+                *ngFor="let el of sinisterNatureList"
+              >
+                {{ el.title }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button
+            type="submit"
+            rippleEffect
+            class="btn btn-primary mr-1"
+            [disabled]="!avgcost.valid"
+          >
+          {{ 'BUTTONS.SUBMIT' | translate }}
+          </button>
+          <!-- <button type="reset" rippleEffect class="btn btn-outline-danger">
+            {{ 'BUTTONS.RESET' | translate }}
+          </button> -->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</section>

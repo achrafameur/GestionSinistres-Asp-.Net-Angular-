@@ -1,0 +1,536 @@
+<section id="ngx-datatable-multi-purpose">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <form
+    class="form form-vertical"
+    (ngSubmit)="submit(expertSpecialities, expertSinNatures)"
+  >
+    <div class="card">
+      <div class="card-body">
+        <form class="form form-vertical" [formGroup]="addExpertForm">
+          <div class="row">
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.EXPERTTYPE" | translate
+                }}</label>
+                <select
+                  class="custom-select form-control"
+                  formControlName="typeExpert"
+                  required
+                >
+                  <option selected>X Company</option>
+                  <option>ADVERSE</option>
+                </select>
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('typeExpert')!.invalid &&
+                  (addExpertForm.get('typeExpert')!.dirty ||
+                    addExpertForm.get('typeExpert')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('typeExpert')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.CODE" | translate
+                }}</label>
+                <input
+                  type="number"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="code"
+                  placeholder="{{ 'ADD.CODE' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('code')!.invalid &&
+                  (addExpertForm.get('code')!.dirty ||
+                    addExpertForm.get('code')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('code')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.FIRSTNAME" | translate
+                }}</label>
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="fName"
+                  placeholder="{{ 'ADD.FIRSTNAME' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('fName')!.invalid &&
+                  (addExpertForm.get('fName')!.dirty ||
+                    addExpertForm.get('fName')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('fName')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.LASTNAME" | translate
+                }}</label>
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="lName"
+                  placeholder="{{ 'ADD.LASTNAME' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('lName')!.invalid &&
+                  (addExpertForm.get('lName')!.dirty ||
+                    addExpertForm.get('lName')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('lName')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.CIN" | translate
+                }}</label>
+                <input
+                  type="text"
+                  id="cin"
+                  class="form-control"
+                  formControlName="cin"
+                  placeholder="{{ 'ADD.CIN' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('cin')!.invalid &&
+                  (addExpertForm.get('cin')!.dirty ||
+                    addExpertForm.get('cin')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('cin')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+              <div *ngIf="Error.isError" class="col-9 form-text text-danger">
+                {{ Error.errorMessage }}
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.EMAIL" | translate
+                }}</label>
+                <input
+                  type="email"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="email"
+                  placeholder="{{ 'ADD.EMAIL' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('email')!.invalid &&
+                  (addExpertForm.get('email')!.dirty ||
+                    addExpertForm.get('email')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('email')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.BIRTHDATE" | translate
+                }}</label>
+                <input
+                  type="date"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="birthDate"
+                  placeholder="{{ 'ADD.BIRTHDATE' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('birthDate')!.invalid &&
+                  (addExpertForm.get('birthDate')!.dirty ||
+                    addExpertForm.get('birthDate')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('birthDate')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.SEX" | translate
+                }}</label>
+                <select
+                  class="custom-select form-control"
+                  formControlName="sexId"
+                  required
+                >
+                  <option [value]="el.title" *ngFor="let el of sexObj" selected>
+                    {{ el.title }}
+                  </option>
+                </select>
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('sexId')!.invalid &&
+                  (addExpertForm.get('sexId')!.dirty ||
+                    addExpertForm.get('sexId')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('sexId')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.TELEPHONENUMBER" | translate
+                }}</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  class="form-control"
+                  formControlName="tel"
+                  placeholder="{{ 'ADD.TELEPHONENUMBER' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('tel')!.invalid &&
+                  (addExpertForm.get('tel')!.dirty ||
+                    addExpertForm.get('tel')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('tel')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+              <div *ngIf="PError.isError" class="col-9 form-text text-danger">
+                {{ PError.errorMessage }}
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.FIXE" | translate
+                }}</label>
+                <input
+                  type="tel"
+                  id="fixe"
+                  class="form-control"
+                  formControlName="fixe"
+                  placeholder="{{ 'ADD.FIXE' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('fixe')!.invalid &&
+                  (addExpertForm.get('fixe')!.dirty ||
+                    addExpertForm.get('fixe')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('fixe')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+              <div *ngIf="FError.isError" class="col-9 form-text text-danger">
+                {{ FError.errorMessage }}
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.FAX" | translate
+                }}</label>
+                <input
+                  type="tel"
+                  id="fax"
+                  class="form-control"
+                  formControlName="fax"
+                  placeholder="{{ 'ADD.FAX' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('fax')!.invalid &&
+                  (addExpertForm.get('fax')!.dirty ||
+                    addExpertForm.get('fax')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('fax')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+              <div *ngIf="FaxError.isError" class="col-9 form-text text-danger">
+                {{ FaxError.errorMessage }}
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.GOVERNORATE" | translate
+                }}</label>
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="governorate"
+                  placeholder="{{ 'ADD.GOVERNORATE' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('governorate')!.invalid &&
+                  (addExpertForm.get('governorate')!.dirty ||
+                    addExpertForm.get('governorate')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('governorate')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.ADRESS" | translate
+                }}</label>
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="address"
+                  placeholder="{{ 'ADD.ADRESS' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('address')!.invalid &&
+                  (addExpertForm.get('address')!.dirty ||
+                    addExpertForm.get('address')!.touched)
+                "
+              >
+                <small
+                  *ngIf="addExpertForm.get('address')?.errors?.required"
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.CANCELLATIONDATE" | translate
+                }}</label>
+                <input
+                  type="date"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="cancellationDate"
+                  placeholder="{{ 'ADD.CANCELLATIONDATE' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('cancellationDate')!.invalid &&
+                  (addExpertForm.get('cancellationDate')!.dirty ||
+                    addExpertForm.get('cancellationDate')!.touched)
+                "
+              >
+                <small
+                  *ngIf="
+                    addExpertForm.get('cancellationDate')?.errors?.required
+                  "
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+            <div class="col-xl-4 col-md-6 col-12">
+              <div class="form-group">
+                <label for="first-name-vertical">{{
+                  "ADD.REGISTRATIONDATE" | translate
+                }}</label>
+                <input
+                  type="date"
+                  id="first-name-vertical"
+                  class="form-control"
+                  formControlName="registrationDate"
+                  placeholder="{{ 'ADD.REGISTRATIONDATE' | translate }}"
+                  required
+                />
+              </div>
+              <div
+                class="col-9"
+                *ngIf="
+                  addExpertForm.get('registrationDate')!.invalid &&
+                  (addExpertForm.get('registrationDate')!.dirty ||
+                    addExpertForm.get('registrationDate')!.touched)
+                "
+              >
+                <small
+                  *ngIf="
+                    addExpertForm.get('registrationDate')?.errors?.required
+                  "
+                  class="form-text text-danger"
+                >
+                  This Field is required !!
+                </small>
+              </div>
+            </div>
+          </div>
+        </form>
+        <hr width="900" size="5" color="black" />
+        <div class="row">
+          <div class="col">
+            <form class="form form-vertical" #expertSinNatures="ngForm">
+              <div class="form-group">
+                <h4 for="email-id-vertical">
+                  {{ "TITLES.ATTACHSN" | translate }}
+                </h4>
+                <div *ngFor="let elm of sinisterNatures">
+                  <input
+                    name="sinisterNatureId"
+                    required
+                    type="checkbox"
+                    [(ngModel)]="elm.isChecked"
+                    (change)="onChangeSinNat()"
+                  />{{ elm.title }}
+                </div>
+              </div>
+            </form>
+          </div>
+          <span class="vertical-line"></span>
+          <div class="col">
+            <form class="form form-vertical" #expertSpecialities="ngForm">
+              <div class="form-group">
+                <h4 for="email-id-vertical">
+                  {{ "TITLES.ATTACHSPEC" | translate }}
+                </h4>
+                <div *ngFor="let elm of chains">
+                  <div *ngIf="elm.title === 'specialities'">
+                    <div *ngFor="let el of elm.elements">
+                      <input
+                        name="chainElementId"
+                        [(ngModel)]="el.isChecked"
+                        required
+                        type="checkbox"
+                        (change)="onChange()"
+                      />{{ el.title }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" rippleEffect class="btn btn-primary mr-1">
+            {{ "BUTTONS.SUBMIT" | translate }}
+          </button>
+          <button type="reset" rippleEffect class="btn btn-outline-danger">
+            {{ "BUTTONS.RESET" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

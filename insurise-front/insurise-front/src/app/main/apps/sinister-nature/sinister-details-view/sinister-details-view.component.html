@@ -1,0 +1,647 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<div class="card">
+    <div class="card-title" style="margin-left: 20px; margin-top: 20px">
+      <h3>{{ 'DETAILS.NAME' | translate }} : {{ selectedSinisterNature.title }}</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-12 mb-50"></div>
+        <div class="btn-group col-md-6 col-12"></div>
+        <div class="col-md-6 col-12">
+          <div
+            class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0"
+          >
+            <div ngbDropdown>
+              <button
+                ngbDropdownToggle
+                class="btn btn-gradient-primary"
+                type="button"
+                id="dropdownMenuButton101"
+              >
+                Actions
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownMenuButton101">
+                <a ngbDropdownItem (click)="modalOpenForm(modalForm)"
+                  >{{ 'DETAILS.SPECIALITIES' | translate }}</a
+                >
+                <a
+                  ngbDropdownItem
+                  (click)="modalFeaturesOpenForm(modalFeatureForm)"
+                  >{{ 'DETAILS.FEATURES' | translate }}</a
+                >
+                <a
+                  ngbDropdownItem
+                  (click)="modalMandatoryDocumentsOpenForm(modalManDocForm)"
+                  >{{ 'DETAILS.MANDATORYDOCUMENTS' | translate }}</a
+                >
+                <a ngbDropdownItem (click)="modalFormulaOpenForm(modalFormula)"
+                  >{{ 'DETAILS.EVALUATIONFORMULA' | translate }}</a
+                >
+                <a
+                  ngbDropdownItem
+                  (click)="modalFeesFormulaOpenForm(modalFeesFormula)"
+                  >{{ 'DETAILS.FEESFORMULA' | translate }}</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">{{ 'ADD.TITLE' | translate }}</th>
+            <th scope="col">{{ 'ADD.CODE' | translate }}</th>
+            <th scope="col">{{ 'ADD.BRANCH' | translate }}</th>
+            <th scope="col">Menus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ selectedSinisterNature.title }}</td>
+            <td>{{ selectedSinisterNature.code }}</td>
+            <td>{{ selectedSinisterNature.branch }}</td>
+            <td>
+              <div class="d-flex">
+                <div>
+                  <div class="d-flex">
+                    <p>IdaEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.idaEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>TransactionEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.transactionEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>ThirdPartyEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.thirdPartyEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>VictimEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.victimEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>RespEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.respEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="d-flex">
+                    <p>RespAutoEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.respAutoEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>AffaireEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.affaireEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>ExpertiseEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.expertiseEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>EvalInterneEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.evalInterneEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>EvalInterneCorpEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.evalInterneCorpEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <p>RegExpertEnabled :</p>
+                    <div
+                      *ngIf="
+                        selectedSinisterNature.regExpertEnabled == true;
+                        else elseBlock
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="green"
+                        class="bi bi-check-circle-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">{{ 'DETAILS.ATTACHEDFEATURES' | translate }}</th>
+            <th scope="col">{{ 'DETAILS.ATTACHEDMANDATORYDOCUMENTS' | translate }}</th>
+            <th scope="col">{{ 'DETAILS.ATTACHEDSPECIALITIES' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="col">
+              <div *ngIf="sinNatFeatures.length > 0; else featureElse">
+                <div *ngFor="let el of sinNatFeatures">
+                  <div class="d-flex">
+                    <p>{{ el.feature }}</p>
+                    <br />
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td scope="col">
+              <div *ngIf="sinDocuments.length > 0; else DocElse">
+                <div *ngFor="let el of sinDocuments">
+                  <div class="d-flex">
+                    <p>{{ el.mandatoryDocument }}</p>
+                    <br />
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td scope="col">
+              <div *ngIf="Specialities.length > 0; else SpecElse">
+                <div *ngFor="let el of Specialities">
+                  <div class="d-flex">
+                    <p>{{ el.chainElement }}</p>
+                    <br />
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">EVALUATION FORULA</th>
+            <th scope="col">FEES FORMULA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="col">
+                  <div class="d-flex">
+                    <p>{{ selectedSinisterNature.formulaEvaluationId }}</p>
+                    <br />
+                  </div>
+            </td>
+            <td scope="col">
+                  <div class="d-flex">
+                    <p>{{ selectedSinisterNature.formulaFeesId }}</p>
+                    <br />
+                  </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Specialities Modal -->
+  <div class="login-form">
+    <ng-template #modalForm let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Attach Specialities</h4>
+        <button
+          type="button"
+          class="close"
+          (click)="modal.dismiss('Cross click')"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" tabindex="0" ngbAutofocus>
+        <h4>Specialities :</h4>
+        <form class="form form-vertical" #sinisterNatureSpecialities="ngForm">
+          <div *ngFor="let elm of chains">
+            <div *ngIf="elm.title === 'specialities'">
+              <div *ngFor="let el of elm.elements">
+                <!-- <div *ngFor="let spec of Specialities">
+                  <div *ngIf="spec.chainElementId === el.chainElementId" > -->
+                    <input
+                    type="checkbox"
+                    [checked]="checked"
+                    name="chainElementId"
+                    [(ngModel)]="el.isChecked"
+                    (change)="onChange()"
+                    />{{ el.title }}
+                  <!-- </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <br />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="attachSpecialities(sinisterNatureSpecialities)"
+          rippleEffect
+        >
+          Submit
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  <!-- / Modal -->
+  <!-- <ng-template #thenBlock>Content to render when condition is true.</ng-template> -->
+  
+  <!--  Features Modal -->
+  <div class="login-form">
+    <ng-template #modalFeatureForm let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Attach Features</h4>
+        <button
+          type="button"
+          class="close"
+          (click)="modal.dismiss('Cross click')"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" tabindex="0" ngbAutofocus>
+        <form class="form form-vertical" #SinisterNatureFeature="ngForm">
+          <h4 for="email-id-vertical">Features :</h4>
+          <div *ngFor="let el of Features">
+            <input
+              name="featureId"
+              required
+              type="checkbox"
+              [(ngModel)]="el.isChecked"
+              (change)="onChangeFeature()"
+              
+            />{{ el.title }}
+          </div>
+          <br />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="attachFeatures(SinisterNatureFeature)"
+          rippleEffect
+        >
+          Submit
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  <!-- / Modal -->
+  
+  <!--  Mandatory Documents Modal -->
+  <div class="login-form">
+    <ng-template #modalManDocForm let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Attach Mandatory Documents</h4>
+        <button
+          type="button"
+          class="close"
+          (click)="modal.dismiss('Cross click')"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" tabindex="0" ngbAutofocus>
+        <h4>Mandatory Documents :</h4>
+        <form
+          class="form form-vertical"
+          #SinisterNatureMandatoryDocuments="ngForm"
+        >
+          <div *ngFor="let el of mandatoryDocuments">
+            <input
+              name="mandatoryDocumentId"
+              required
+              type="checkbox"
+              [(ngModel)]="el.isChecked"
+              (change)="onChangeMandatoryDocument()"
+            />{{ el.title }}
+          </div>
+          <br />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="attachMandatoryDocuments(SinisterNatureMandatoryDocuments)"
+          rippleEffect
+        >
+          Submit
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  <!-- / Modal -->
+  
+  <!--  Mandatory Documents Modal -->
+  <div class="login-form">
+    <ng-template #modalFormula let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">New Formula</h4>
+        <button
+          type="button"
+          class="close"
+          (click)="modal.dismiss('Cross click')"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" tabindex="0" ngbAutofocus>
+        <!-- <h4 for="email-id-vertical">Features :</h4>
+        <div>
+            <div *ngFor="let el of sinNatFeatures">
+            <button class="btn btn-info" >{{el.feature}}</button>
+            <br/>
+            </div>
+          <br />
+        </div> -->
+        <div>
+          <form #EvaluationFormula="ngForm" class="form form-vertical">
+            <label>Formula :</label>
+            <input type="text" name="formulaEvaluationId" class="form-control" ngModel/>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          rippleEffect
+          [disabled]="!EvaluationFormula.valid"
+          (click)="addEvaluationFormula(EvaluationFormula)"
+        >
+          Submit
+        </button>
+        </div>
+    </ng-template>
+  </div>
+  <!-- / Modal -->
+  
+  <!--  Mandatory Documents Modal -->
+  <div class="login-form">
+    <ng-template #modalFeesFormula let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">New Fees Formula</h4>
+        <button
+          type="button"
+          class="close"
+          (click)="modal.dismiss('Cross click')"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" tabindex="0" ngbAutofocus>
+        <!--<h4 for="email-id-vertical">Features :</h4>
+        <div>
+           <ul>
+            <div *ngFor="let el of sinNatFeatures">
+            <li>{{el.feature}}</li>
+            </div>
+          </ul>
+          <br />
+          <div> -->
+            <form #FeesFormula="ngForm">
+              <label>Formula :</label>
+              <input type="text" name="formulaFeesId" class="form-control" ngModel/>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          rippleEffect
+          [disabled]="!FeesFormula.valid"
+          (click)="addFeesFormula(FeesFormula)"
+        >
+          Submit
+        </button>
+      </div>
+    </ng-template>
+  </div>
+  <!-- / Modal -->
+  
+  <ng-template #elseBlock>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="red"
+      class="bi bi-file-x-fill"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6.854 6.146 8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 1 1 .708-.708z"
+      />
+    </svg>
+  </ng-template>
+  
+  <ng-template #featureElse>
+    <p style="color: red">No Attached features yet !!</p>
+  </ng-template>
+  
+  <ng-template #DocElse>
+    <p style="color: red">No Attached mandatoryDocuments yet !!</p>
+  </ng-template>
+  
+  <ng-template #SpecElse>
+    <p style="color: red">No Attached specialities yet !!</p>
+  </ng-template>
+  

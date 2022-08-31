@@ -1,0 +1,81 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<form class="form form-horizontal" #status="ngForm" (ngSubmit)="update(status)">
+  <div class="blog-edit-wrapper">
+    <div>
+      <div class="card">
+        <div class="card-body">
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ 'ADD.TITLE' | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control w-60"
+                  name="title"
+                  placeholder="title"
+                  [(ngModel)]="Status.title"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ 'ADD.SYMBOL' | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  id="first-name-vertical"
+                  class="form-control w-60"
+                  name="symbol"
+                  placeholder="Symbol"
+                  [(ngModel)]="Status.symbol"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <div class="col-sm-3 col-form-label">
+                <label>{{ 'ADD.ITEM' | translate }}</label>
+              </div>
+              <div class="col-sm-9">
+                <select
+                  class="custom-select form-control w-60"
+                  name="itemId"
+                  placeholder="Item Id"
+                  [(ngModel)]="Status.itemId"
+                  required
+                >
+                  <option [value]="0">-Select-</option>
+                  <option [value]="el.id" *ngFor="let el of itemList">
+                    {{ el.title }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9 offset-sm-3">
+            <button
+              type="submit"
+              rippleEffect
+              class="btn btn-primary mr-1"
+              [disabled]="!status.valid"
+            >
+            {{ 'BUTTONS.SUBMIT' | translate }}
+            </button>
+            <button type="reset" rippleEffect class="btn btn-outline-danger">
+              {{ 'BUTTONS.RESET' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,293 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+       
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  
+
+        <div class="card">
+            <div class="card-title" style="margin-left: 20px; margin-top: 20px">
+              <h3>{{ 'HEADER.REFERENCE' | translate }} : {{ selectedQuotation.reference }}</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 mb-50"></div>
+                <div class="btn-group col-md-6 col-12"></div>
+                <div class="col-md-6 col-12">
+                  <div
+                    class="d-flex align-items-center justify-content-end pr-1 pb-1 pl-1 pl-md-0 pb-md-0"
+                  >
+                    <div ngbDropdown>
+                      <button
+                        ngbDropdownToggle
+                        class="btn btn-gradient-primary"
+                        type="button"
+                        id="dropdownMenuButton101"
+                      >
+                        Actions
+                      </button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownMenuButton101">
+                        <a ngbDropdownItem (click)="modalOpenProductForm(modalForm)"
+                          >Attach Product</a
+                        >
+                        <a
+                          ngbDropdownItem
+                          (click)="modalOpenDurationForm(modalDurationForm)"
+                          >Set Dates</a
+                        >
+                        <a
+                          ngbDropdownItem
+                          (click)="modalOpenWarrantiesForm(modalWarrantyForm)"
+                          >Choose Warranties</a
+                        >
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="card-title" style="margin-left: 20px; margin-top: 20px">
+              <h4 style="color: rgb(119, 0, 255)">{{ 'HEADER.PRODUCT' | translate }} : {{ selectedQuotation.product }}</h4>
+            </div>
+            <div class="card-title" style="margin-left: 700px; margin-top: 20px">
+              <h4>{{ 'HEADER.STARTDATE' | translate }} : {{ selectedQuotation.startDate| date:'dd-MM-yyyy' }}</h4>
+              <h5>{{ 'HEADER.DURATION' | translate }} : {{ selectedQuotation.duration }}</h5>
+            </div>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">REFERENCE</th>
+                    <th scope="col">CLIENT</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ selectedQuotation.reference }}</td>
+                    <td>{{ selectedQuotation.client }}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+              <br />
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">{{ 'HEADER.ATTACHEDWARRANTIES' | translate }}</th>
+                    <th scope="col">{{ 'HEADER.ATTACHEDFEATURES' | translate }}</th>
+                    <th scope="col">Taxes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="col">
+                      <div *ngIf="quotationWarranties.length > 0; else warrantyElse">
+                        <div *ngFor="let el of quotationWarranties">
+                          <div class="d-flex">
+                            <p>{{ el.warranty }}</p>
+                            <br />
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td scope="col">
+                     
+                    </td>
+                    <td scope="col">
+                      
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+
+
+
+<!--  Warranties Modal -->
+<div class="login-form">
+    <ng-template #modalWarrantyForm let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Attach Warranties</h4>
+        <button
+          type="button"
+          class="close"
+          (click)="modal.dismiss('Cross click')"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" tabindex="0" ngbAutofocus>
+        <form class="form form-vertical" #QuotationWarranty="ngForm">
+          <h4 for="email-id-vertical">Warranties :</h4>
+          <div *ngFor="let el of warrantyList">
+            <input
+              name="warrantyId"
+              required
+              type="checkbox"
+              [(ngModel)]="el.isChecked"
+              (change)="onChangeWarranty()"
+              
+            />{{ el.title }}
+          </div>
+          <br />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="!QuotationWarranty.valid"
+          (click)="attachWarranties(QuotationWarranty)"
+          rippleEffect
+        >
+          Submit
+        </button>
+      </div>
+    </ng-template>
+  </div>
+
+  
+ <!-- Login Form -->
+ <div class="login-form">
+    <!-- Button trigger modal -->
+    <button type="button" (click)="modalBranchAndProductOpenForm(modalForm)" class="btn btn-outline-primary" rippleEffect>
+      
+    </button>
+  
+    <!-- Modal -->
+    <ng-template #modalForm let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Attach Product to this Quotation</h4>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" tabindex="0" ngbAutofocus>
+        <form class="form form-vertical"
+  #quotation ="ngForm"  (ngSubmit)="attachBranchAndProduct(quotation)"
+  >
+   <div class="row">
+    
+     
+  <div class="col-12">
+      <div class="form-group">
+          <label for="nature">Choose Branch</label>
+          <select class="custom-select" id="branch" name="branchId"  [(ngModel)]="selectedQuotation.branchId" required (change)="selected()">
+              
+                  <option [value]="el.branchId" *ngFor="let el of branchList" >{{el.title}}</option>
+          </select>
+      </div>
+  </div>
+  
+  <div class="col-12">
+      <div class="form-group">
+          <label for="chain">Choose Product</label>
+          <select class="custom-select" id="product" name="productId" [(ngModel)]="selectedQuotation.productId">
+             
+              <option selected [value]="el.productId" *ngFor="let el of filtredProductList" >{{el.title}}</option>
+          </select>
+      </div>
+  </div>
+   </div>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"[disabled]="!quotation.valid" (click)="modal.close(attachBranchAndProduct(quotation))" rippleEffect>
+          Submit
+        </button>
+      </div>
+    </ng-template>
+    <!-- / Modal -->
+  </div>
+
+
+
+
+
+
+
+
+<!-- Login Form -->
+<div class="login-form">
+    <!-- Button trigger modal -->
+    <button type="button" (click)="modalOpenDurationForm(modalDurationForm)" class="btn btn-outline-primary" rippleEffect>
+      
+    </button>
+  
+    <!-- Modal -->
+    <ng-template #modalDurationForm let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Attach Duration to this Quotation</h4>
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" tabindex="0" ngbAutofocus>
+        <form class="form form-vertical"
+  #quotation1 ="ngForm"  (ngSubmit)="attachStartDateAndDuration(quotation1)"
+  >
+   <div class="row">
+    
+     
+  <div class="col-12">
+    <div class="form-group">
+        <label for="email-id-vertical">Start Date</label>
+        <input
+                type="date"
+                id="email-id-vertical"
+                class="form-control"
+                name="startDate"
+                [(ngModel)]="quotation1.startDate"
+              
+               
+        />
+    </div>
+  </div>
+  
+  <div class="col-12">
+      <div class="form-group">
+          <label for="chain">Choose Duration</label>
+          <select class="custom-select" id="duration" name="durationId" [(ngModel)]="selectedQuotation.durationId">
+             
+              <option selected [value]="el.durationId" *ngFor="let el of durationList" >{{el.title}}</option>
+          </select>
+      </div>
+  </div>
+   </div>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"[disabled]="!quotation1.valid" (click)="modal.close(attachStartDateAndDuration(quotation1))" rippleEffect>
+          Submit
+        </button>
+      </div>
+    </ng-template>
+    <!-- / Modal -->
+  </div>
+
+
+
+
+
+  <ng-template #warrantyElse>
+    <p style="color: red">No Attached Warranties yet !!</p>
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+ 
+  
+  
+  

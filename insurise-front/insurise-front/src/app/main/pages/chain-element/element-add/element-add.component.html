@@ -1,0 +1,51 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  
+  <form class="form form-vertical" ng-controller="CheckBoxController"
+  [formGroup]="addElementForm"    (ngSubmit)="onSubmit()"
+  >
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="first-name-vertical">{{ 'ADD.TITLE' | translate }}</label>
+          <input
+            type="text"
+            id="first-name-vertical"
+            class="form-control"
+            name="form-label"
+            placeholder="Title" 
+            
+            formControlName="title"
+          />
+        </div>
+      </div>
+  
+  
+      <div class="col-12">
+        <div class="form-group">
+            <label for="chain">Chain</label>
+            <select class="custom-select" name="chainId" ngModel formControlName="chainId" >
+               
+                <option selected [value]="el.chainId" *ngFor="let el of chainList" >{{el.title}}</option>
+            </select>
+        </div>
+    </div>
+   
+      <div class="col-12">
+        <button 
+          id="addChain"
+          type="submit"
+          rippleEffect
+          class="btn btn-primary mr-1"
+          
+        >
+        {{'ADD.BTNSUBMIT' | translate}}
+        </button>
+      </div>
+    </div>
+  </form>
+  
+   
+  
